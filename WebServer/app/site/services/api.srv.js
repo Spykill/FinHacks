@@ -25,6 +25,10 @@
     						{title: "Alcohol", val: comparison[9]},
     						{title: "Household", val: comparison[10]},
     						{title: "Grooming", val: comparison[11]}];
+                // Hisham adding these.
+                {title: "Rent", val: comparison[12]}];
+                {title: "Transportation", val: comparison[13]}];
+                {title: "Utilities", val: comparison[14]}];
     	});
 
     	//Function Binding
