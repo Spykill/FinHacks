@@ -1,6 +1,8 @@
 import numpy 
 import classifier
 import math
+import generators as gen
+import random
 '''
 Order is Ed - Ent - Clth - Ele- Rest. - groc- B.eq- A.eq- S.eq- Alch- HH- Groom
 '''
@@ -70,9 +72,6 @@ def proportional_expenditure(trans_history):
 def Location():
 	pass
 	
-def Name():
-	pass
-	
 def email():
 	pass
 
@@ -86,4 +85,7 @@ def gen_profile(vect):
 	income, saving=determine_inv_sav(trans_hist, sav_rating)
 	rent= determine_rent()
 	utilities = determine_utility(rent)
+	name = gen.generate_name()
+	email = gen.generate_email(name)
+	Location = random.choice(['Toronto', 'Calgary', 'Vancover', 'Montreal', 'Edmonton'])
 	return ()

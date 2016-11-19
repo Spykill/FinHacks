@@ -34,4 +34,7 @@ def generate_name():
     first_name = first_name[0].upper() + first_name[1:]
 
     return (first_name, last_name)
+    
+def generate_email(name):
+	return name[0] +"."+name[1]+"@gmail.com"
 
