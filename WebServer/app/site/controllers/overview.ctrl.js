@@ -4,15 +4,7 @@
         .controller('OverviewCtrl', OverviewCtrl);
 
     function OverviewCtrl($q, apiService) {
-        
-<<<<<<< HEAD
-        this.monthly_spend = apiService.get_user();
-=======
-        var t = this;
-        /*
-        this.monthly_spend = apiService.get_user();
-        */
->>>>>>> ae2b9bba03741756914f2131f4f23b0985b725f7
+
         this.monthly_avg_spend = "5";
         apiService.get_user(function(data)
         {
@@ -220,7 +212,7 @@
                 }
             },
             series: [{
-                name: 'Amount spent this month',
+                name: 'Breakdown',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
@@ -235,10 +227,10 @@
                 },
                 data: [{
                     value: 490,
-                    name: 'Under'
+                    name: 'Optimized'
                 }, {
                     value: 88,
-                    name: 'Over'
+                    name: 'Not optimized'
                 }]
             }]
         });
