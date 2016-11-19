@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Test</title>
+		<script type="text/javascript">
+			function loadDoc(method, req, params) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if(this.readyState == 4)
+					{
+						document.getElementById("response").innerHTML = this.responseText;
+					}
+				};
+				xhttp.open(method, req, true);
+				xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				console.log(params);
+				xhttp.send(params);
+			}
+
+			function toParam(obj)
+			{
+				var str = "";
+				Object.keys(obj).forEach(function(key)
+				{
+					str += key + "=" + obj[key] + '&';
+				});
+
+				return str.substring(0, str.length-1);
+			}
+		</script>
+	</head>
+	<body>
+		<p id='response'></p>
+		<div style='margin: 15px; padding: 15px; background-color: #DDDDDD'>
+			Log in:<br>
+			Username: <input type="text" id="li_username"><br>
+			Password: <input type="text" id="li_password"><br>
+			<input type="submit" value="submit" onclick="loadDoc('POST', '/api/users/login', 'username=' + document.getElementById('li_username').value + '&password=' + document.getElementById('li_password').value)">
+		</div>
+		<div style='margin: 15px; padding: 15px; background-color: #DDDDDD'>
+			Sign up:<br>
+			Username: <input type="text" id="su_username"><br>
+			Password: <input type="text" id="su_password"><br>
+			<input type="submit" value="submit" onclick="loadDoc('POST', '/api/users/signup', 'username=' + document.getElementById('su_username').value + '&password=' + document.getElementById('su_password').value)">
+		</div>
+		<div style='margin: 15px; padding: 15px; background-color: #DDDDDD'>
+			Get data:<br>
+			Username: <input type="text" id="gd_username"><br>
+			<input type="submit" value="submit" onclick="loadDoc('POST', '/api/users/getdata', 'username=' + document.getElementById('gd_username').value)">
+		</div>
+		<div style='margin: 15px; padding: 15px; background-color: #DDDDDD'>
+			Add Transaction:<br>
+			Username: <input type="text" id="at_username"><br>
+			Transaction Name: <input type="text" id="at_name"><br>
+			Amount: <input type="number" id="at_amount"><br>
+			Category: <input type="number" id="at_category"><br>
+			<input type="submit" value="submit" onclick="loadDoc('POST', '/api/users/addtransaction', toParam({
+				username: document.getElementById('at_username').value,
+				amount: parseFloat(document.getElementById('at_amount').value),
+				category: parseInt(document.getElementById('at_category').value),
+				name: document.getElementById('at_name').value
+			}))">
+		</div>
+	</body>
+</html>
