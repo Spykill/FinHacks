@@ -5,6 +5,6 @@
         .service('tabService', tabService)
 
     function tabService() {
-        
+    }
 
 })();
