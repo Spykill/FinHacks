@@ -38,12 +38,12 @@
     	this.is_empty = function ()
     	{
     		return user_data.transaction_list.length == 0;
-    	}
+    	};
 
     	this.get_transaction_list = function()
     	{
     		return user_data.transaction_list;
-    	}
+    	};
 
     	this.get_comparison = function()
     	{
