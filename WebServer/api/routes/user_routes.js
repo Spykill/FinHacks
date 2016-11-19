@@ -96,7 +96,7 @@ router.post('/login', function(req, res, next) {
 	coll.findOne({username: username}, {}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send([err.toString(), doc]);
 		}
 		// Did they use the wrong password?
 		else if (doc.password != password)
