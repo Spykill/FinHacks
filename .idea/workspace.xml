@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd40ebed-3a67-4b64-8db6-4b8737ce0297" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/FinHacks.iml" afterPath="$PROJECT_DIR$/.idea/FinHacks.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/controllers/home.ctrl.js" afterPath="$PROJECT_DIR$/WebServer/app/site/controllers/home.ctrl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/controllers/overview.ctrl.js" afterPath="$PROJECT_DIR$/WebServer/app/site/controllers/overview.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/partials/dash.html" afterPath="$PROJECT_DIR$/WebServer/app/site/partials/dash.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/partials/overview.html" afterPath="$PROJECT_DIR$/WebServer/app/site/partials/overview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/partials/smartappliance.html" afterPath="$PROJECT_DIR$/WebServer/app/site/partials/smartappliance.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer/app/site/services/api.srv.js" afterPath="$PROJECT_DIR$/WebServer/app/site/services/api.srv.js" />
     </list>
     <ignored path="FinHacks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,8 +82,8 @@
       <file leaf-file-name="overview.ctrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebServer/app/site/controllers/overview.ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2108">
-              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            <state relative-caret-position="187">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -406,12 +400,12 @@
       <workItem from="1479522372310" duration="28479000" />
       <workItem from="1479576660533" duration="1120000" />
       <workItem from="1479577830766" duration="1230000" />
-      <workItem from="1479579080278" duration="3300000" />
+      <workItem from="1479579080278" duration="3690000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34129000" />
+    <option name="totallyTimeSpent" value="34519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
@@ -759,27 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebServer/app/site/partials/overview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebServer/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebServer/api/routes/user_routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1190">
@@ -796,11 +769,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebServer/app/site/partials/smartappliance.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebServer/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebServer/app/site/controllers/home.ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-492">
           <caret line="7" column="0" selection-start-line="6" selection-start-column="28" selection-end-line="7" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebServer/app/site/partials/overview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -812,18 +814,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebServer/app/site/partials/smartappliance.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebServer/app/site/controllers/overview.ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2108">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="187">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding />
         </state>
       </provider>

@@ -5,7 +5,7 @@
 
     function OverviewCtrl(apiService) {
         
-        this.monthly_spend = apiService.get_user;
+        this.monthly_spend = apiService.get_transaction_list();
         this.monthly_avg_spend = "5";
 
         var theme = {
