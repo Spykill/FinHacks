@@ -212,7 +212,7 @@
                 }
             },
             series: [{
-                name: 'Amount spent this month',
+                name: 'Breakdown',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
@@ -227,10 +227,10 @@
                 },
                 data: [{
                     value: 490,
-                    name: 'Under'
+                    name: 'Optimized'
                 }, {
                     value: 88,
-                    name: 'Over'
+                    name: 'Not optimized'
                 }]
             }]
         });

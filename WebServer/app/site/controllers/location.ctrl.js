@@ -199,7 +199,7 @@
                 }
             },
             series: [{
-                name: 'Amount optimized',
+                name: 'Breakdown',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
