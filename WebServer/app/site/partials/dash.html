@@ -32,7 +32,6 @@
                   <li><a href="#">Clothing<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tag"></span></a></li>
                   <li><a href="#">Electronics<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-phone"></span></a></li>
                   <li><a href="#">Utilities<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a></li>
-                  <li><a href="#">Hardware<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
                   <li><a href="#">Miscellaneous<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-gift"></span></a></li>
               </ul>
           </div>
@@ -47,10 +46,11 @@
               <li class="active" id="tab1" ng-click="ctrl.change_tab('tab1')"><a ui-sref="dash.overview">Overview</a></li>
               <li id="tab2" ng-click="ctrl.change_tab('tab2')"><a ui-sref="dash.demographic">Demographic</a></li>
               <li id="tab3" ng-click="ctrl.change_tab('tab3')"><a ui-sref="dash.location">Location</a></li>
+                <li id="tab4" ng-click="ctrl.change_tab('tab4')"><a ui-sref="dash.smartappliance">My Smart Appliances</a></li>
             </ul>
           </div>
           <div class="row">
-              <div ui-view class="wrapper" style="width: 100%; padding-left: 50px;"></div>
+              <div ui-view class="wrapper" style="width: 100%; padding-left: 50px; height:48vw;"></div>
           </div>
       </div>
   </div>

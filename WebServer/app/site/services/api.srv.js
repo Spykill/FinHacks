@@ -2,7 +2,7 @@
 
     angular
         .module('finApp')
-        .service('apiService', apiService)
+        .service('apiService', apiService);
 
     function apiService($http)
     {
@@ -51,24 +51,25 @@
 		}
 
     	//Function Binding
+
       this.get_user = function() {
         return user_data;
       }
-
     	this.is_empty = function ()
     	{
     		return user_data.transaction_list.length == 0;
-    	}
+    	};
 
     	this.get_transaction_list = function()
     	{
-    		return user_data.transaction_list;
-    	}
+    		// return user_data.transaction_list;
+			window.alert("hello");
+    	};
 
     	this.get_comparison = function()
     	{
     		return comparison_out;
-    	}
+    	};
 
     	this.login = function(username, password)
     	{
