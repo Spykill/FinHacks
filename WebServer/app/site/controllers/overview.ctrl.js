@@ -180,7 +180,7 @@
             legend: {
                 x: 'center',
                 y: 'bottom',
-                data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+                data: ['Over', 'Under']
             },
             toolbox: {
                 show: true,
@@ -196,14 +196,6 @@
                                 max: 1548
                             }
                         }
-                    },
-                    restore: {
-                        show: true,
-                        title: "Restore"
-                    },
-                    saveAsImage: {
-                        show: true,
-                        title: "Save Image"
                     }
                 }
             },
@@ -214,29 +206,19 @@
                 itemStyle: {
                     normal: {
                         label: {
-                            show: true
+                            show: false
                         },
                         labelLine: {
-                            show: true
-                        }
-                    },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            position: 'center',
-                            textStyle: {
-                                fontSize: '14',
-                                fontWeight: 'normal'
-                            }
+                            show: false
                         }
                     }
                 },
                 data: [{
                     value: 335,
-                    name: 'Under average'
+                    name: 'Under'
                 }, {
                     value: 310,
-                    name: 'Over average'
+                    name: 'Over'
                 }]
             }]
         });
