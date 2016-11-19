@@ -10,7 +10,7 @@ class Purchase:
     def __init__(self, category, amount):
         """
         @type category: str
-            The type of purchase
+            The type of purchase. There are 16 distinct categories of purchase.
         @type amount: float
             The dollar amount of the payment
         """
