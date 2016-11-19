@@ -96,7 +96,7 @@ router.post('/login', function(req, res, next) {
 	coll.findOne({username: username}, {}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("Oh no! Something went wrong!");
+			res.status(500).send("-1");
 		}
 		// Did they use the wrong password?
 		else if (doc.password != password)
@@ -134,32 +134,30 @@ router.post('/signup', function(req, res, next) {
 	{
 		if(err)
 		{
-			res.status(500).send("Oh no! Something went wrong");
+			res.status(500).send("-1");
 		}
 		else
 		{
-			if(doc)
+			if(!doc)
 			{
-	    		res.status(200).send("1");
+				// Add a new empty user with only the username and password filled in.
+				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email }, function(err, doc){
+					if(err)
+					{
+						res.status(500).send("-1");
+					}
+					// Adding worked!
+					else
+					{
+				    	res.status(200).send("1");
+				    }
+				});
 			}
 			else
 			{
 	    		res.status(200).send("0");
 			}
 		}
-	});
-
-	// Add a new empty user with only the username and password filled in.
-	coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email }, function(err, doc){
-		if(err)
-		{
-			res.status(500).send("Oh no! Something went wrong!");
-		}
-		// Adding worked!
-		else
-		{
-	    	res.status(200).send("Good!");
-	    }
 	});
 });
 
@@ -205,12 +203,12 @@ router.post('/addtransaction', function(req, res, next) {
 				coll.update({"username": username}, {$push: {"transaction": transaction}, $set: {"category": category, "averages": doc.averages}}, function(err, doc){
 					if(err)
 					{
-						res.status(500).send("Oh no! Something went wrong!");
+						res.status(500).send("-1");
 					}
 					// This succeeded
 					else
 					{
-				    	res.status(200).send("Good!");
+				    	res.status(200).send("1");
 				    }
 				});
 			});
@@ -229,7 +227,7 @@ router.post('/getdata', function(req, res, next) {
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("Oh no! Something went wrong!");
+			res.status(500).send("-1");
 		}
 		// Respond with all the user's data
 		else
@@ -250,7 +248,7 @@ router.post('/compare', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("Oh no! Something went wrong!" + err);
+			res.status(500).send("-1");
 		}
 		else
 		{
@@ -259,7 +257,7 @@ router.post('/compare', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("Oh no! Something went wrong!" + err);
+					res.status(500).send("-1");
 				}
 				else
 				{
