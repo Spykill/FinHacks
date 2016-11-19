@@ -58,7 +58,8 @@
 
     	this.get_transaction_list = function()
     	{
-    		return user_data.transaction_list;
+    		// return user_data.transaction_list;
+			window.alert("hello");
     	};
 
     	this.get_comparison = function()

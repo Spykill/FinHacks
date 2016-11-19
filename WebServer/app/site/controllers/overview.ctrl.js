@@ -1,9 +1,13 @@
 (function(){
     angular
         .module('finApp')
-        .controller('OverviewCtrl', OverviewCtrl)
+        .controller('OverviewCtrl', OverviewCtrl);
 
-    function OverviewCtrl() {
+    function OverviewCtrl(apiService) {
+        
+        this.monthly_spend = apiService.get_user;
+        this.monthly_avg_spend = "5";
+
         var theme = {
             color: [
                 '#26B99A', '#34495E', '#BDC3C7', '#3498DB',

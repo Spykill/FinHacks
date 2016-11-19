@@ -4,7 +4,7 @@
         .controller('HomeCtrl', HomeCtrl)
 
     function HomeCtrl($scope, ngDialog, apiService){
-        this.loggedin = false;
+        this.loggedin = true;
 
         this.name = "";
         this.age = 0;
