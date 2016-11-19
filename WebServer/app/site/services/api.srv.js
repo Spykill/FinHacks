@@ -12,7 +12,7 @@
     	//if(localStorage.getItem('username') != null)
     	{//localStorage.getItem('username')
 	    	var comparison_out = undefined;
-			console.log("This is happening")
+			console.log("This is happening");
 	    	var promise = $http.post('/api/users/getdata', {"username": 'Andriy'}).then(function(data){ user_data = JSON.parse(data.data); }, function(data){ console.log(data); });
 	    	var promise2 = $http.post('/api/users/compare', {"username": 'Andriy'}).then(function(data){
 	    		console.log(data);
@@ -69,8 +69,7 @@
 
     	this.get_transaction_list = function()
     	{
-    		return user_data//[{amount: 7, name: "fucks given", category: 1}]//user_data.transaction_list
-
+        return user_data.transaction_list;
     	};
 
     	this.get_comparison = function()
@@ -80,11 +79,11 @@
 
     	this.login = function(username, password)
     	{
-    		$http.post('/login', toParam({
+    		$http.post('/api/users/login', {
     			username: username,
     			password: password
-    		})).then(function(data){
-    			if (data.trim() == "1")
+    		}).then(function(data){
+    			if (data.data.trim() == "1")
     			{
     				localStorage.setItem("username", username);
     				return true;
@@ -101,7 +100,7 @@
     	this.signup = function(username, password, name, age, email, gender,
       income, location)
     	{
-    		$http.post('/signup', toParam({
+    		$http.post('/api/users/signup', {
     			username: username,
     			password: password,
     			name: name,
@@ -110,9 +109,11 @@
     			gender: gender,
     			income: income,
     			location: location
-    		})).then(function(data){
-    			if (data.trim() == "1")
+    		}).then(function(data){
+
+    			if (data == "1")
     			{
+    				localStorage.setItem("username", username);
     				return true;
     			}
     			else

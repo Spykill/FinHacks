@@ -6,8 +6,7 @@
     function LocationCtrl() {
         var theme = {
             color: [
-                '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
-                '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+                '#f40303', '#0ef403'
             ],
 
             title: {
@@ -200,25 +199,25 @@
                 }
             },
             series: [{
-                name: 'Access to the resource',
+                name: 'Amount optimized',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
                     normal: {
                         label: {
-                            show: false
+                            show: true
                         },
                         labelLine: {
-                            show: false
+                            show: true
                         }
                     }
                 },
                 data: [{
-                    value: 335,
-                    name: 'Under'
+                    value: 88,
+                    name: 'Not optimized'
                 }, {
-                    value: 310,
-                    name: 'Over'
+                    value: 490,
+                    name: 'Optimized'
                 }]
             }]
         });

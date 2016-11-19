@@ -10,7 +10,7 @@ class Person:
 
     """
 
-    def __init__(self, lifestyle_vector):
+    def __init__(self,category, name, email, age income, savings, rent, utilities, trans_history):
         """Initialize a new instance of a person."""
         self.lifestyle = lifestyle_vector
 

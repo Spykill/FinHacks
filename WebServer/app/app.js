@@ -40,7 +40,7 @@
 				controller:'LocationCtrl as ctrl',
 				templateUrl:'site/partials/location.html'
 			})
-				.state('dash.smartappliance',{
+				.state('dash.appliance',{
 					url:'/smartappliance',
 					controller:'applianceCtrl as ctrl',
 					templateUrl:'site/partials/appliance.html'

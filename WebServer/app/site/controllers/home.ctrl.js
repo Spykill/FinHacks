@@ -2,10 +2,10 @@
     angular
         .module('finApp')
         .controller('HomeCtrl', HomeCtrl)
-    
-    function HomeCtrl($scope, ngDialog, apiService){
-        this.loggedin = true;
 
+    function HomeCtrl($scope, ngDialog, apiService, $state){
+        this.loggedin = false;
+        this.welcome_message = "Welcome to Budget Buddy!"
         this.name = "";
         this.age = 0;
         this.username = "";
@@ -58,7 +58,6 @@
           this.gender = "";
           this.income = 0;
           this.location = "";
-          this.user = apiService.user_data;
           ngDialog.close();
           $state.go("dash.overview");
         }
