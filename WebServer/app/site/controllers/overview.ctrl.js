@@ -4,7 +4,7 @@
         .controller('OverviewCtrl', OverviewCtrl);
 
     function OverviewCtrl($q, apiService) {
-
+        var t = this;
         this.monthly_avg_spend = "5";
         apiService.get_user(function(data)
         {
@@ -18,8 +18,7 @@
 
         var theme = {
             color: [
-                '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
-                '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+                '#f40303', '#0ef403'
             ],
 
             title: {
@@ -31,7 +30,7 @@
             },
 
             dataRange: {
-                color: ['#1f610a', '#97b58d']
+                color: ['#f40303', '#0ef403']
             },
 
             toolbox: {
@@ -218,10 +217,10 @@
                 itemStyle: {
                     normal: {
                         label: {
-                            show: false
+                            show: true
                         },
                         labelLine: {
-                            show: false
+                            show: true
                         }
                     }
                 },
