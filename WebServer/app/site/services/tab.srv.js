@@ -4,7 +4,7 @@
         .module('finApp')
         .service('tabService', tabService)
 
-    function tabService($http) {
+    function tabService() {
         
 
 })();
