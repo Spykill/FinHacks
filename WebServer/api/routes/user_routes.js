@@ -22,7 +22,7 @@ function compute_category(transaction_list, callback)
 
 	// Call python code and return the category to the callback
 	var spawn = child_process.spawn;
-	var proc = spawn('python', ['main.py', "\"" + JSON.stringify(transaction_list).split("\"").join("\\\"") + "\""]);
+	var proc = spawn('python', ['main.py', "\"" + JSON.stringify(trans_cats).split("\"").join("\\\"") + "\""]);
 	proc.stdout.on('data', function(data){ callback(parseInt(data.toString().trim())); });
 }
 
