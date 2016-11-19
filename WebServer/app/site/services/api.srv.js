@@ -10,8 +10,8 @@
     	var comparison = undefined;
 
     	var comparison_out = undefined;
-    	var promise = $http.post('/getdata', "username=" + localStorage.getItem('username')).success(function(data){ user_data = JSON.parse(data); });
-    	var promise2 = $http.post('/compare', "username=" + localStorage.getItem('username') + "&type=demographic").success(function(data){
+    	var promise = $http.post('/api/users/getdata', "username=" + localStorage.getItem('username')).then(function(data){ user_data = JSON.parse(data); }, function(data){ console.log("Failed!"); });
+    	var promise2 = $http.post('/api/users/compare', "username=" + localStorage.getItem('username') + "&type=demographic").then(function(data){
     		comparison = JSON.parse(data);
     		comparison_out = [{title: "Education", val: comparison[0]},
     						{title: "Entertainment", val: comparison[1]},
@@ -24,15 +24,15 @@
     						{title: "Sports", val: comparison[8]},
     						{title: "Alchohol", val: comparison[9]},
     						{title: "Household", val: comparison[10]},
-    						{title: "Grooming", val: comparison[11]}];
+    						{title: "Grooming", val: comparison[11]},
                 // Hisham adding these.
-                // {title: "Rent", val: comparison[12]}];
-                // {title: "Transportation", val: comparison[13]}];
-                // {title: "Utilities", val: comparison[14]}];
-                // {title: "All", val: comparison[15]}];
-                // {title: "Savings", val: comparison[16]}];
-                // {title: "Miscellaneous", val: comparison[17]}];
-    	});
+                {title: "Rent", val: comparison[12]},
+                {title: "Transportation", val: comparison[13]},
+                {title: "Utilities", val: comparison[14]},
+                {title: "All", val: comparison[15]},
+                {title: "Savings", val: comparison[16]},
+                {title: "Miscellaneous", val: comparison[17]}];
+    	}, function(data){ console.log("Failed!"); });
 
 		function toParam(obj)
 		{
@@ -47,9 +47,10 @@
 		}
 
     	//Function Binding
-		this.userData = function(){
-			return user_data.user_data;
-		}
+
+      this.get_user = function() {
+        return user_data;
+      }
     	this.is_empty = function ()
     	{
     		return user_data.transaction_list.length == 0;
@@ -65,7 +66,7 @@
     		return comparison_out;
     	};
 
-    	this.login = function()
+    	this.login = function(username, password)
     	{
     		$http.post('/login', toParam({
     			username: username,
@@ -84,7 +85,8 @@
     		});
     	}
 
-    	this.signup = function()
+    	this.signup = function(username, password, name, age, email, gender,
+      income, location)
     	{
     		$http.post('/signup', toParam({
     			username: username,

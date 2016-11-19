@@ -3,7 +3,7 @@
         .module('finApp')
         .controller('HomeCtrl', HomeCtrl)
 
-    function HomeCtrl($scope, ngDialog){
+    function HomeCtrl($scope, ngDialog, apiService){
         this.loggedin = false;
 
         this.name = "";
@@ -18,6 +18,7 @@
         this.login = login;
         this.signup = signup;
         this.getLocation = getLocation;
+        this.signup_submit = signup_submit
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -44,6 +45,21 @@
           open_signup();
         }
 
+        function signup_submit() {
+          apiService.signup(this.username, this.password, this.name, this.age, this.email, this.gender,
+          this.income, this.location);
+          apiService.login(this.username, this.password);
+          this.loggedin = true;
+          this.name = "";
+          this.age = 0;
+          this.username = "";
+          this.email = "";
+          this.password = "";
+          this.gender = "";
+          this.income = 0;
+          this.location = "";
+          this.user = apiService.user_data;
+        }
 
         function login() {
           open_login = function() {
