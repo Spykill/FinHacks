@@ -101,12 +101,12 @@ router.post('/login', function(req, res, next) {
 		// Did they use the wrong password?
 		else if (doc.password != password)
 		{
-	    	res.status(200).send("Bad!");
+	    	res.status(200).send("0");
 		}
 		// They used the right password! :D
 		else
 		{
-	    	res.status(200).send("Good!");
+	    	res.status(200).send("1");
 	    }
 	});
 });
@@ -119,12 +119,38 @@ router.post('/signup', function(req, res, next) {
 	// Get vars
 	var username = req.body.username;
 	var password = req.body.password;
+	var age = req.body.age;
+	var gender = req.body.gender;
+	var name = req.body.name;
+	var income = req.body.income;
+	var location = req.body.location;
+	var email = req.body.email;
 
 	var db = req.db;
 
-	// Add a new empty user with only the username and password filled in.
 	var coll = db.get('users');
-	coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}}, function(err, doc){
+
+	coll.findOne({"username": username}, function(err, doc)
+	{
+		if(err)
+		{
+			res.status(500).send("Oh no! Something went wrong");
+		}
+		else
+		{
+			if(doc)
+			{
+	    		res.status(200).send("1");
+			}
+			else
+			{
+	    		res.status(200).send("0");
+			}
+		}
+	});
+
+	// Add a new empty user with only the username and password filled in.
+	coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email }, function(err, doc){
 		if(err)
 		{
 			res.status(500).send("Oh no! Something went wrong!");
