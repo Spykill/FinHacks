@@ -271,5 +271,46 @@ router.post('/compare', function(req, res, next){
 	});
 });
 
+var possible_locations = ["Toronto", "Montreal", "Vancouver", "Edmenton", "Calgary"]
+
+router.post('/compare_loc', function(req, res, next){
+	// Get vars
+	var username = req.body.username;
+
+	var db = req.db;
+
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			var loc = doc.location;
+			if (possible_locations.indexOf(loc) == -1)
+			{
+				loc = "Toronto";
+			}
+			// Find all the people in the user's category
+			coll.find({"location": loc}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					// Get the deltas (the difference between the selected user and the average)
+					var deltas = get_deltas(doc, calculate_average(docs));
+					// Send back the deltas
+					res.status(200).send(deltas);
+				}
+			});
+	    }
+	});
+});
+
 
 module.exports = router;
