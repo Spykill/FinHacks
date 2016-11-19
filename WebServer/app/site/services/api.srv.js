@@ -19,12 +19,19 @@
     						{title: "Electronics", val: comparison[3]},
     						{title: "Restaurants", val: comparison[4]},
     						{title: "Groceries", val: comparison[5]},
-    						{title: "Building", val: comparison[6]},
+    						{title: "Hardware", val: comparison[6]},
     						{title: "Art", val: comparison[7]},
     						{title: "Sports", val: comparison[8]},
-    						{title: "Alcohol", val: comparison[9]},
+    						{title: "Alchohol", val: comparison[9]},
     						{title: "Household", val: comparison[10]},
     						{title: "Grooming", val: comparison[11]}];
+                // Hisham adding these.
+                {title: "Rent", val: comparison[12]}];
+                {title: "Transportation", val: comparison[13]}];
+                {title: "Utilities", val: comparison[14]}];
+                {title: "All", val: comparison[15]}];
+                {title: "Savings", val: comparison[16]}];
+                {title: "Miscellaneous", val: comparison[17]}];
     	});
 
     	//Function Binding

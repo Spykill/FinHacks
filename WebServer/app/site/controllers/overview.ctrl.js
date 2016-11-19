@@ -200,7 +200,7 @@
                 }
             },
             series: [{
-                name: 'Access to the resource',
+                name: 'Amount spent this month',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
@@ -214,10 +214,10 @@
                     }
                 },
                 data: [{
-                    value: 335,
+                    value: 490,
                     name: 'Under'
                 }, {
-                    value: 310,
+                    value: 88,
                     name: 'Over'
                 }]
             }]
