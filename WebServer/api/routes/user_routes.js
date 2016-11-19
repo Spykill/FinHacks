@@ -5,25 +5,28 @@ var child_process = require("child_process");
 // Calculate the category from a given transaction_list
 function compute_category(transaction_list, callback)
 {
-	var trans_cats = [0,0,0,0,0,0,0,0,0,0,0,0];
+	var trans_cats = [{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0},{v:0}];
 	var sum = 0;
 	for(var i = 0; i < transaction_list.length; i++)
 	{
-		trans_cats[transaction_list[i].category] += 1;//transaction_list[i].amount;
+		trans_cats[transaction_list[i].category].v += 1;//transaction_list[i].amount;
 		sum += 1;//transaction_list[i].amount;
 	}
 	if(sum != 0)
 	{
 		for(var i = 0; i < 12; i++)
 		{
-			trans_cats[i] /= sum;
+			trans_cats[i].v /= sum;
 		}
 	}
 
+	// console.log(trans_cats);
+
 	// Call python code and return the category to the callback
 	var spawn = child_process.spawn;
-	var proc = spawn('python', ['main.py', "\"" + JSON.stringify(trans_cats).split("\"").join("\\\"") + "\""]);
-	proc.stdout.on('data', function(data){ callback(parseInt(data.toString().trim())); });
+	var proc = spawn('python', ['Classification/main.py', "\"" + JSON.stringify(trans_cats).split("\"").join("\\\"") + "\""]);
+	// console.log("\"" + JSON.stringify(trans_cats).split("\"").join("\\\"") + "\"");
+	proc.stdout.on('data', function(data){ if(data.toString().trim() != "ERROR!"){callback(parseInt(data.toString().trim()));}else{console.log("There was an error! :'(");} });
 }
 
 // Calculates the average for each category of item
