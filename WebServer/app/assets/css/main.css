@@ -1,0 +1,28 @@
+.jumbotron {
+  height: 500px;
+  margin-bottom: 0;
+}
+#header-wrapper {
+  background-image: url("http://guardianlv.com/wp-content/uploads/2014/05/stock-chart-blue.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+#logo a {
+  color: #DDD;
+  font-family: Lobster;
+  text-shadow: 1px 1px #777;
+}
+.wrapper {
+  padding: 0px;
+}
+.top-nav {
+  margin-bottom: 0px;
+
+}
+#logo {
+  background-color: rgba(0, 0, 0, 0.35);
+  top: 20%;
+  border-radius: 0.35em 0.35em 0.35em 0.35em;
+  overflow: hidden;
+}
