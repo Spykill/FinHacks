@@ -103,7 +103,8 @@
     			income: income,
     			location: location
     		}).then(function(data){
-    			if (data.data.trim() == "1")
+
+    			if (data == "1")
     			{
     				localStorage.setItem("username", username);
     				return true;
