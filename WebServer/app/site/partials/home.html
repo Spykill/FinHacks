@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default home-nav top-nav navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand name white-text">Budget Buddy</a>
+    </div>
+    <div class="right-margin" ng-hide="ctrl.loggedin">
+      <button type="button" class="btn btn-primary navbar-btn navbar-right button-padding indigo-accent-color">Sign in</button>
+      <button type="button" class="btn btn-primary navbar-btn navbar-right button-padding indigo-accent-color">Sign Up</button>
+    </div>
+    <div class="right-margin" ng-show="ctrl.loggedin" ui-sref="dash.overview">
+      <button type="button" class="btn btn-primary navbar-btn navbar-right button-padding indigo-accent-color">Dashboard</button>
+    </div>
+  </div>
+</nav>
+<div class="block main-color">
+
+</div>
+<div class="block accent-color">
+
+</div>

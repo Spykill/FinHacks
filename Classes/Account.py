@@ -1,4 +1,3 @@
-
 class Account:
     """ A representation of a user
 
@@ -65,60 +64,3 @@ class Account:
                 return_dictionary[category] += purchase.amount
 
         return return_dictionary
-
-    def proportional_spending(self):
-        """Return a dictionary of the proportion of total income spent in each category
-
-        NOTE : If the user's monthly income is <= 0, then the proportion of monthly spending in
-        each category is set to -1.
-
-        @rtype dict[str : float]
-        """
-
-        proportion_purchases = self.total_spending()
-
-        for category in self.purchases:
-            if self.income > 0:
-                proportion_purchases[category] = proportion_purchases[category] / self.income
-            else:
-                self.income = -1
-
-        return proportion_purchases
-
-
-
-
-
-
-    def add_purchase(self, purchase):
-        """Add a new purchase to this user's history
-
-        @type purchase: Purchase
-            The new purchase to be added
-        @rtype: None
-        """
-
-        self.purchases[purchase.category].append(purchase)
-
-
-class Purchase:
-    """ A transaction of some sort.
-
-    @type category: str
-        The type of 'purchase' (e.g. food, transport, savings).
-    @type amount: float
-        The dollar amount of the payment
-    """
-
-    def __init__(self, category, amount):
-        """
-        @type category: str
-            The type of purchase
-        @type amount: float
-            The dollar amount of the payment
-        """
-
-        self.category = category
-        self.amount = amount
-
-

@@ -1,12 +1,19 @@
 .jumbotron {
   height: 500px;
   margin-bottom: 0;
+  text-shadow: 2px 2px black;
+  min-width: 100%;
+  position: fixed;
+  min-width: 100%;
 }
 #header-wrapper {
   background-image: url("http://guardianlv.com/wp-content/uploads/2014/05/stock-chart-blue.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  position: fixed;
+  padding: 0;
 }
 #logo a {
   color: #DDD;
@@ -18,11 +25,59 @@
 }
 .top-nav {
   margin-bottom: 0px;
-
+  border: none
 }
 #logo {
   background-color: rgba(0, 0, 0, 0.35);
   top: 20%;
   border-radius: 0.35em 0.35em 0.35em 0.35em;
   overflow: hidden;
+}
+.center  {
+  margin: 0 auto;
+}
+.botmargin {
+  margin-bottom: 50px !important;
+}
+.fixed {
+  position: fixed;
+}
+.topmargin {
+  margin-top: 500px;
+  position: relative;
+}
+.padtop {
+  padding-top: 60px !important;
+}
+.name {
+  font-family: Lobster;
+}
+.home-nav {
+  background-color: #283593;
+  color: white !important;
+}
+.white-text {
+  color: white !important;
+}
+.block {
+  height: 500px;
+  min-width: 100%;
+}
+.main-color {
+  background-color: #03A9F4;
+}
+.right-margin {
+  margin-right: 50px;
+}
+.button-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.indigo-accent-color {
+  background-color: #5C6BC0
+}
+.accent-color {
+  background-color: #0288D1
 }
