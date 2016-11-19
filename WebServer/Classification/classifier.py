@@ -15,7 +15,7 @@ def train(n):
 	training_data = np.asarray(training_data)
 	clusterer = mixture.GaussianMixture(n_components=15)
 	clusterer.fit(training_data)
-	joblib.dump(clusterer, "training_data.pkl")
+	joblib.dump(clusterer, "Classification/training_data.pkl")
 	predict()
 
 def predict(toPredict=None):
@@ -27,7 +27,7 @@ def predict(toPredict=None):
 		toPredict = gc.generate_test_cases(1)[0]
 	toPredict = np.asarray(toPredict)
 	toPredict = toPredict.reshape(1, -1)	
-	clusterer = joblib.load("training_data.pkl")
+	clusterer = joblib.load("Classification/training_data.pkl")
 	class_ = clusterer.predict(toPredict)
 	print(class_[0])
 
