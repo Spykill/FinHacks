@@ -2,7 +2,11 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.4.4 (C:\Python34\python.exe)" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.5.2 (C:\Users\davey\AppData\Local\Programs\Python\Python35\python.exe)" jdkType="Python SDK" />
+>>>>>>> 8b9d30d58fc690b80db02e4d9ee0e6e5b5deaae2
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="FinHacks node_modules" level="project" />
   </component>

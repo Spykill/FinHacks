@@ -2,7 +2,7 @@
     angular
         .module('finApp')
         .controller('HomeCtrl', HomeCtrl)
-
+    
     function HomeCtrl($scope, ngDialog, apiService){
         this.loggedin = true;
 
@@ -59,6 +59,8 @@
           this.income = 0;
           this.location = "";
           this.user = apiService.user_data;
+          ngDialog.close();
+          $state.go("dash.overview");
         }
 
         function login() {
