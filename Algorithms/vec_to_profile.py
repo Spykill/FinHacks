@@ -3,6 +3,7 @@ import classifier
 import math
 import generators as gen
 import random
+from people import Person
 '''
 Order is Ed - Ent - Clth - Ele- Rest. - groc- B.eq- A.eq- S.eq- Alch- HH- Groom
 '''
@@ -69,12 +70,6 @@ def proportional_expenditure(trans_history):
 	return final
 	
 
-def Location():
-	pass
-	
-def email():
-	pass
-
 def gen_profile(vect):
 	'''
 	Input lifestyle vector return person obj with income, expenditure,
@@ -84,8 +79,10 @@ def gen_profile(vect):
 	trans_hist=create_transaction_history(vect)
 	income, saving=determine_inv_sav(trans_hist, sav_rating)
 	rent= determine_rent()
+	category = classifier.predict(vect)
 	utilities = determine_utility(rent)
 	name = gen.generate_name()
 	email = gen.generate_email(name)
+	age = random.choice(list(range(16,81)))
 	Location = random.choice(['Toronto', 'Calgary', 'Vancover', 'Montreal', 'Edmonton'])
-	return ()
+	return Person(category,name,email,age,income,saving,rent,utilities,trans_hist)
