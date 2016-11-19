@@ -141,7 +141,7 @@ router.post('/signup', function(req, res, next) {
 			if(!doc)
 			{
 				// Add a new empty user with only the username and password filled in.
-				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email }, function(err, doc){
+				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email, savings: 0, rent: 0, utilities: 0 }, function(err, doc){
 					if(err)
 					{
 						res.status(500).send("-1");
@@ -172,6 +172,7 @@ router.post('/addtransaction', function(req, res, next) {
 	transaction.name = req.body.name;
 	transaction.amount = parseFloat(req.body.amount);
 	transaction.category = parseInt(req.body.category);
+	transaction.date = parse
 
 	// Find the desired user to update.
 	var coll = db.get('users');
@@ -219,6 +220,8 @@ router.post('/addtransaction', function(req, res, next) {
 router.post('/getdata', function(req, res, next) {
 	// Get vars
 	var username = req.body.username;
+
+	console.log(username);
 
 	var db = req.db;
 
