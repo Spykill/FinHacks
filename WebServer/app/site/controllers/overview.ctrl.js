@@ -3,10 +3,21 @@
         .module('finApp')
         .controller('OverviewCtrl', OverviewCtrl);
 
-    function OverviewCtrl(apiService) {
+    function OverviewCtrl($q, apiService) {
         
+<<<<<<< HEAD
         this.monthly_spend = apiService.get_user();
+=======
+        var t = this;
+        /*
+        this.monthly_spend = apiService.get_user();
+        */
+>>>>>>> ae2b9bba03741756914f2131f4f23b0985b725f7
         this.monthly_avg_spend = "5";
+        apiService.get_user(function(data)
+        {
+            t.monthly_spend = data["income"];
+        });
 
         apiService.user_data_callback = function()
         {
