@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('finApp',['ui.router']);
+		.module('finApp',['ui.router', 'ngDialog']);
 
 	angular
 		.module('finApp')
