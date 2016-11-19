@@ -2,9 +2,9 @@
     angular
         .module('finApp')
         .controller('HomeCtrl', HomeCtrl)
-    
-    function HomeCtrl($scope, ngDialog, apiService){
-        this.loggedin = true;
+
+    function HomeCtrl($scope, ngDialog, apiService, $state){
+        this.loggedin = false;
 
         this.name = "";
         this.age = 0;
