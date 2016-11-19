@@ -28,5 +28,6 @@ def predict(toPredict=None):
 	toPredict = np.asarray(toPredict)
 	toPredict = toPredict.reshape(1, -1)	
 	clusterer = joblib.load("training_data.pkl")
-	print(clusterer.predict(toPredict))
+	class_ = clusterer.predict(toPredict)
+	print(class_[0])
 
