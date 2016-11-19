@@ -5,7 +5,7 @@
 
     function HomeCtrl($scope, ngDialog, apiService, $state){
         this.loggedin = false;
-
+        this.welcome_message = "Welcome to Budget Buddy!"
         this.name = "";
         this.age = 0;
         this.username = "";
