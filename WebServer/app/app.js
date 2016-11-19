@@ -39,7 +39,12 @@
 				url:'/location',
 				controller:'LocationCtrl as ctrl',
 				templateUrl:'site/partials/location.html'
-			});
+			})
+				.state('dash.smartappliance',{
+					url:'/smartappliance',
+					controller:'applianceCtrl as ctrl',
+					templateUrl:'site/partials/appliance.html'
+				});
 
 		});
 })();

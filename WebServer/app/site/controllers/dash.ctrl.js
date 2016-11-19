@@ -39,16 +39,25 @@
             $("#tab1").addClass("active")
             $("#tab2").removeClass("active")
             $("#tab3").removeClass("active")
+              $("#tab4").removeClass("active")
           }
           else if (active == "tab2") {
             $("#tab2").addClass("active")
             $("#tab1").removeClass("active")
             $("#tab3").removeClass("active")
+              $("#tab4").removeClass("active")
           }
           else if (active == "tab3") {
             $("#tab3").addClass("active")
             $("#tab1").removeClass("active")
             $("#tab2").removeClass("active")
+              $("#tab4").removeClass("active")
+          }
+            else if (active == "tab4"){
+              $("#tab4").addClass("active")
+              $("#tab1").removeClass("active")
+              $("#tab2").removeClass("active")
+              $("#tab3").removeClass("active")
           }
         }
     }

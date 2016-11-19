@@ -9,13 +9,14 @@
     	var user_data = undefined;
     	var comparison = undefined;
 
-    	if(localStorage.getItem('username') != null)
-    	{
+    	//if(localStorage.getItem('username') != null)
+    	{//localStorage.getItem('username')
 	    	var comparison_out = undefined;
-	    	var promise = $http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ console.log(data); user_data = JSON.parse(data); }, function(data){ console.log(data); });
-	    	var promise2 = $http.post('/api/users/compare', {username: localStorage.getItem('username')}).then(function(data){
+			console.log("This is happening")
+	    	var promise = $http.post('/api/users/getdata', {"username": 'Andriy'}).then(function(data){ user_data = JSON.parse(data.data); }, function(data){ console.log(data); });
+	    	var promise2 = $http.post('/api/users/compare', {"username": 'Andriy'}).then(function(data){
 	    		console.log(data);
-	    		comparison = JSON.parse(data);
+	    		comparison = JSON.parse(data.data);
 	    		comparison_out = [{title: "Education", val: comparison[0]},
 	    						{title: "Entertainment", val: comparison[1]},
 	    						{title: "Clothing", val: comparison[2]},
@@ -35,6 +36,10 @@
 	                {title: "All", val: comparison[15]},
 	                {title: "Savings", val: comparison[16]},
 	                {title: "Miscellaneous", val: comparison[17]}];
+				if(this.user_data_callback != undefined)
+				{
+					this.user_data_callback();
+				}
 	    	}, function(data){ console.log(data); });
 	    }
 
@@ -53,7 +58,9 @@
     	//Function Binding
 
       this.get_user = function() {
-        return user_data;
+		  if(user_data != undefined) {
+			  return user_data.income;
+		  }
       }
     	this.is_empty = function ()
     	{
@@ -62,8 +69,8 @@
 
     	this.get_transaction_list = function()
     	{
-    		// return user_data.transaction_list;
-			window.alert("hello");
+    		return user_data//[{amount: 7, name: "fucks given", category: 1}]//user_data.transaction_list
+
     	};
 
     	this.get_comparison = function()

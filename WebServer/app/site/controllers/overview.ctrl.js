@@ -5,8 +5,13 @@
 
     function OverviewCtrl(apiService) {
         
-        this.monthly_spend = apiService.get_transaction_list();
+        this.monthly_spend = apiService.get_user();
         this.monthly_avg_spend = "5";
+
+        apiService.user_data_callback = function()
+        {
+            this.monthly_spend = apiService.get_user();
+        };
 
         var theme = {
             color: [
