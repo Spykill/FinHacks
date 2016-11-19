@@ -3,10 +3,17 @@
         .module('finApp')
         .controller('OverviewCtrl', OverviewCtrl);
 
-    function OverviewCtrl(apiService) {
+    function OverviewCtrl($q, apiService) {
         
-        this.monthly_spend = apiService.get_transaction_list();
+        var t = this;
+        /*
+        this.monthly_spend = apiService.get_user();
+        */
         this.monthly_avg_spend = "5";
+        apiService.get_user(function(data)
+        {
+            t.monthly_spend = data["income"];
+        });
 
         var theme = {
             color: [
