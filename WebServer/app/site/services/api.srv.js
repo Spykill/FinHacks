@@ -108,6 +108,7 @@
     			}
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");
+          console.log(err);
     		});
     	}
 

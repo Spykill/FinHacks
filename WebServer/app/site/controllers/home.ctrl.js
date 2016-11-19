@@ -48,7 +48,6 @@
         function signup_submit() {
           apiService.signup(this.username, this.password, this.name, this.age, this.email, this.gender,
           this.income, this.location);
-          apiService.login(this.username, this.password);
           this.loggedin = true;
           this.name = "";
           this.age = 0;
