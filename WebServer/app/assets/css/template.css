@@ -2209,8 +2209,8 @@ button:hover,
 	position: absolute;
 	z-index: 1;
 	top: 0;
-	left: 50%;
-	width: 15em;
+	left: 32%;
+	width: 100%;
 	margin-left: -7.5em;
 }
 
@@ -2219,12 +2219,6 @@ button:hover,
 	width: 100%;
 	height: 4em;
 	line-height: 4em;
-	background: rgba(255, 255, 255, 0.15);
-	border: solid 1px;
-	border-color: #fff;
-	border-color: rgba(255, 255, 255, 0.75);
-	border-top: 0;
-	border-radius: 0.35em 0.35em 0.35em 0.35em;
 	color: #fff;
 	display: inline-block;
 	font-weight: 600;

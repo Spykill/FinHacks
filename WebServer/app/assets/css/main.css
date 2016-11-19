@@ -1,7 +1,6 @@
 .jumbotron {
   height: 500px;
   margin-bottom: 0;
-  text-shadow: 2px 2px black;
   min-width: 100%;
   position: fixed;
   min-width: 100%;
@@ -11,9 +10,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  text-shadow: 2px 2px black;
   background-attachment: fixed;
   position: fixed;
   padding: 0;
+  width: 100%;
 }
 #logo a {
   color: #DDD;
@@ -29,8 +30,7 @@
 }
 #logo {
   background-color: rgba(0, 0, 0, 0.35);
-  top: 20%;
-  border-radius: 0.35em 0.35em 0.35em 0.35em;
+  top: 30%;
   overflow: hidden;
 }
 .center  {
