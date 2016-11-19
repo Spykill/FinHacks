@@ -4,12 +4,7 @@ import math
 '''
 Order is Ed - Ent - Clth - Ele- Rest. - groc- B.eq- A.eq- S.eq- Alch- HH- Groom
 '''
-def gen_profile(vect):
-	'''
-	Input lifestyle vector return person obj with income, expenditure,
-	purchase amount by category.
-	'''
-	return ()
+
 
 def create_transaction_history(vect):
 	'''
@@ -51,13 +46,26 @@ def determine_income(transaction_history, saving_rating):
 def determine_savings(transaction_history, saving_rating):
 	return determine_inv_sav(transaction_history, saving_rating)[1]
 
-def determine_categoric_expendicture(monthly_spending, lifestyle_vector,weighing_vector):
-	'''
-	Order of categories:
-	Rent-groceries-transportation-restaurants-entertainment-education-clothing-electronics-utilities
+def determine_rent():
+	return numpy.random.beta(2,3)*2000
+
+def determine_utility(rent):
+	return numpy.random.beta(3,18)*rent
+
+def proportional_expenditure(trans_history):
+	total = 0
+	for i in trans_history:
+		total += i[1]
+	final = {}
+	for i in trans_history:
+		if i[0] in final:
+			final[i[0]] += i[1]
+		else:
+			final[i[0]] = i[1]
+	for j in final:
+		final[j] = final[j]/total
+	return final
 	
-	Order of 
-	'''
 
 def Location():
 	pass
@@ -67,3 +75,15 @@ def Name():
 	
 def email():
 	pass
+
+def gen_profile(vect):
+	'''
+	Input lifestyle vector return person obj with income, expenditure,
+	purchase amount by category.
+	'''
+	sav_rating=determine_saving_rating()
+	trans_hist=create_transaction_history(vect)
+	income, saving=determine_inv_sav(trans_hist, sav_rating)
+	rent= determine_rent()
+	utilities = determine_utility(rent)
+	return ()
