@@ -1,0 +1,153 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="content-wrapper">
+        <ul class="left-nav">
+            <li><a ui-sref="shop"><i class="fa fa-first-order fa-4x cat-icon"></i></a></li>
+        </ul>
+        <ul class="right-nav">
+            <li><a ui-sref="cart"><span class="cart glyphicon glyphicon-shopping-cart"></span></a></li>
+        </ul>
+    </div>
+</nav><br><br><br>
+        <!-- /.container -->
+
+
+    <div class="container">
+    <img src="http://www.freewebheaders.com/wordpress/wp-content/gallery/beautiful-landscape/trees-sunset-and-lake-reflection-landscape-web-header.jpg" class="img-responsive" alt="">
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h1>Checkout</h1></div>
+  <div class="panel-body checkout">
+  <div class="row">
+<div class="col-md-6">
+  <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" class="form-control" id="name" placeholder="(as it appears on your card)" name="name"  maxlength="100" size="50">
+  </div>
+
+  <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Your email" name="email">
+  </div>
+
+  <div class="form-group">
+      <label for="phone">Phone number</label>
+      <input type="text" class="form-control" id="phone" placeholder="Your telephone" name="phone">
+  </div>
+
+  <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" id="country" placeholder="" name="country"  maxlength="100" size="30">
+  </div>
+
+  <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" class="form-control" id="state" placeholder="" name="state"  maxlength="100" size="30">
+  </div>
+
+  <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" placeholder="" name="city"  maxlength="100" size="30">
+  </div>
+<div class="form-group">
+      <label for="gender">Gender</label>
+      <select class="form-control" id="gender" name="gender">
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="card_name">Credit card name</label>
+      <select class="form-control" id="card_name" name="card_name">
+        <option value="Visa">Visa</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="Discover">Discover</option>
+        <option value="Amex">Amex</option>
+      </select>
+  </div>
+  <div class="form-group">
+    Credit card number:
+    <input class="inputCard" type="number" min="1000" max="9999" name="creditCard1" id="creditCard1" required/>
+    -
+    <input class="inputCard" type="number" min="1000" max="9999" name="creditCard2" id="creditCard2" required/>
+    -
+    <input class="inputCard" type="number" min="1000" max="9999" name="creditCard3" id="creditCard3" required/>
+    -
+    <input class="inputCard" type="number" min="1000" max="9999"  name="creditCard4" id="creditCard4" required/>
+    <br />
+  </div>
+
+  <!-- Card Expiry:
+  <input class="inputCard" name="expiry" id="expiry" type="month" required/> -->
+
+  <div class="form-group">
+    Card Expiration:
+    <select name='expireMM' id='expireMM'>
+      <option value=''>Month</option>
+      <option value='01'>Janaury</option>
+      <option value='02'>February</option>
+      <option value='03'>March</option>
+      <option value='04'>April</option>
+      <option value='05'>May</option>
+      <option value='06'>June</option>
+      <option value='07'>July</option>
+      <option value='08'>August</option>
+      <option value='09'>September</option>
+      <option value='10'>October</option>
+      <option value='11'>November</option>
+      <option value='12'>December</option>
+    </select>
+
+    <select name='expireYY' id='expireYY'>
+      <option value=''>Year</option>
+      <option value='16'>2016</option>
+      <option value='17'>2017</option>
+      <option value='18'>2018</option>
+      <option value='19'>2019</option>
+      <option value='20'>2020</option>
+    </select>
+    <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
+  </div>
+
+  <div class="form-group">
+      <label for="cvv">Card verification code (CVV)</label>
+      <input type="text" class="form-control" id="cvv" placeholder="" name="cvv" maxlength="4" size="4">
+  </div>
+
+  <div class="checkbox">
+      <br>
+      <label for="agree"><input type="checkbox" value="Agree" name="agree" checked="Agree">I agree to the Terms and Conditions</label>
+      <br><br>
+  </div>
+
+  <button type="submit" class="btn btn-primary" ng-click="ctrl.submitForm()">Submit</button>
+</form>
+</div>
+<div class="col-md-6 cart-total">
+<h4>CART</h4>
+<form action=" " method="">
+<table>
+<tr ng-repeat="item in ctrl.cart track by $index">
+  <td class="det-cart text">{{item.product.name}}</td>
+  <td class="det-cart"><button type="delete" class="btn btn-danger" ng-click="ctrl.deletefromCart(item.product.id)">Delete</button></td>
+
+  </div>
+  </tr>
+</table>
+  <h5>Subtotal: {{ctrl.subtotal | currency : "CAD$ " : 2}}</h5>
+<h5>Tax: {{ctrl.total - ctrl.subtotal | currency : "CAD$ " : 2}}</h5>
+<h5>Total: {{ctrl.total | currency : "CAD$ " : 2}}</h5>
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+  </div>
+
+</div>

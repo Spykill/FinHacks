@@ -1,0 +1,52 @@
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="content-wrapper">
+        <ul class="left-nav">
+            <li><a href="" ng-click="ctrl.toPage('shop')"><i class="fa fa-first-order fa-4x cat-icon"></i></a></li>
+        </ul>
+        <ul class="right-nav">
+            <li><a href="" ng-click="ctrl.toPage('cart')"><span class="cart glyphicon glyphicon-shopping-cart"></span></a></li>
+        </ul>
+    </div>
+</nav>
+    <!--Page Content -->
+<!-- <h3>Categories</h3>
+<div ng-hide="ctrl.is_products">
+  <p class="admin-dash-no-products categories-warning">
+    There are no categories available for this type of product.
+  </p>
+</div> -->
+
+<div class="container">
+  <div class="row">
+
+  </div>
+     <!-- Page Heading -->
+  <div class="row">
+    <div class="col-xs-4"  ng-repeat="product in ctrl.products | filter: {category: ctrl.category} | min" ng-click="ctrl.goProduct(product.id)">
+        <div class="thumbnail">
+          <div class="hovereffect">
+          <img class=" center img-responsive category pointer" src="{{product.image}}" /><br>
+              <!-- Page Heading -->
+             <div class="overlay">
+             </div>
+          </div>
+       <div class="caption">
+         <a class="pointer"><h4 class="center">{{product.name}}  | {{product.category}}</h4></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- /.row -->
+          <hr>
+          <!-- Footer -->
+          <footer>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <p>Copyright &copy; EndOfDays 2016</p>
+                  </div>
+              </div>
+              <!-- /.row -->
+          </footer>
+
+    <!-- /.container -->
