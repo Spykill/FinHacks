@@ -12,10 +12,10 @@
     	if(localStorage.getItem('username') != null)
     	{
 	    	var comparison_out = undefined;
-	    	var promise = $http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ console.log(data); user_data = JSON.parse(data); }, function(data){ console.log(data); });
+	    	var promise = $http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ console.log(data); user_data = data.data; }, function(data){ console.log(data); });
 	    	var promise2 = $http.post('/api/users/compare', {username: localStorage.getItem('username')}).then(function(data){
 	    		console.log(data);
-	    		comparison = JSON.parse(data);
+	    		comparison = data.data;
 	    		comparison_out = [{title: "Education", val: comparison[0]},
 	    						{title: "Entertainment", val: comparison[1]},
 	    						{title: "Clothing", val: comparison[2]},
@@ -76,7 +76,7 @@
     			username: username,
     			password: password
     		}).then(function(data){
-    			if (data.trim() == "1")
+    			if (data.data.trim() == "1")
     			{
     				localStorage.setItem("username", username);
     				return true;
@@ -103,7 +103,7 @@
     			income: income,
     			location: location
     		}).then(function(data){
-    			if (data.trim() == "1")
+    			if (data.data.trim() == "1")
     			{
     				localStorage.setItem("username", username);
     				return true;
