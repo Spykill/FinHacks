@@ -73,10 +73,10 @@
 
     	this.login = function(username, password)
     	{
-    		$http.post('/login', toParam({
+    		$http.post('/api/users/login', {
     			username: username,
     			password: password
-    		})).then(function(data){
+    		}).then(function(data){
     			if (data.trim() == "1")
     			{
     				localStorage.setItem("username", username);
@@ -94,7 +94,7 @@
     	this.signup = function(username, password, name, age, email, gender,
       income, location)
     	{
-    		$http.post('/signup', toParam({
+    		$http.post('/api/users/signup', {
     			username: username,
     			password: password,
     			name: name,
@@ -103,9 +103,10 @@
     			gender: gender,
     			income: income,
     			location: location
-    		})).then(function(data){
+    		}).then(function(data){
     			if (data.trim() == "1")
     			{
+    				localStorage.setItem("username", username);
     				return true;
     			}
     			else

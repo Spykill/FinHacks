@@ -58,7 +58,6 @@
           this.gender = "";
           this.income = 0;
           this.location = "";
-          this.user = apiService.user_data;
           ngDialog.close();
           $state.go("dash.overview");
         }
