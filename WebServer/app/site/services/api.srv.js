@@ -34,6 +34,18 @@
                 {title: "Miscellaneous", val: comparison[17]}];
     	});
 
+		function toParam(obj)
+		{
+			var str = "";
+			Object.keys(obj).forEach(function(key)
+			{
+				str += key + "=" + obj[key] + '&';
+				console.log(key);
+			});
+
+			return str.substring(0, str.length-1);
+		}
+
     	//Function Binding
     	this.is_empty = function ()
     	{
@@ -48,6 +60,50 @@
     	this.get_comparison = function()
     	{
     		return comparison_out;
+    	}
+
+    	this.login = function()
+    	{
+    		$http.post('/login', toParam({
+    			username: username,
+    			password: password
+    		})).then(function(data){
+    			if (data.trim() == "1")
+    			{
+    				return true;
+    			}
+    			else
+    			{
+    				return false;
+    			}
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.signup = function()
+    	{
+    		$http.post('/signup', toParam({
+    			username: username,
+    			password: password,
+    			name: name,
+    			age: age,
+    			email: email,
+    			gender: gender,
+    			income: income,
+    			location: location
+    		})).then(function(data){
+    			if (data.trim() == "1")
+    			{
+    				return true;
+    			}
+    			else
+    			{
+    				return false;
+    			}
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
     	}
     }
 })();
