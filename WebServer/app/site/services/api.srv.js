@@ -2,7 +2,7 @@
 
     angular
         .module('finApp')
-        .service('apiService', apiService)
+        .service('apiService', apiService);
 
     function apiService($http)
     {
@@ -26,12 +26,12 @@
     						{title: "Household", val: comparison[10]},
     						{title: "Grooming", val: comparison[11]}];
                 // Hisham adding these.
-                {title: "Rent", val: comparison[12]}];
-                {title: "Transportation", val: comparison[13]}];
-                {title: "Utilities", val: comparison[14]}];
-                {title: "All", val: comparison[15]}];
-                {title: "Savings", val: comparison[16]}];
-                {title: "Miscellaneous", val: comparison[17]}];
+                // {title: "Rent", val: comparison[12]}];
+                // {title: "Transportation", val: comparison[13]}];
+                // {title: "Utilities", val: comparison[14]}];
+                // {title: "All", val: comparison[15]}];
+                // {title: "Savings", val: comparison[16]}];
+                // {title: "Miscellaneous", val: comparison[17]}];
     	});
 
 		function toParam(obj)
@@ -47,6 +47,9 @@
 		}
 
     	//Function Binding
+		this.userData = function(){
+			return user_data.user_data;
+		}
     	this.is_empty = function ()
     	{
     		return user_data.transaction_list.length == 0;
@@ -60,7 +63,7 @@
     	this.get_comparison = function()
     	{
     		return comparison_out;
-    	}
+    	};
 
     	this.login = function()
     	{
