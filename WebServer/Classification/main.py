@@ -7,9 +7,7 @@ data = data.replace('\\"', '"')
 
 parsed_json = json.loads(data)
 
-print(classifier.predict(toPredict=parsed_json))
-
-print(0)
+classifier.predict(toPredict=parsed_json)
 
 sys.stdout.flush()
 
