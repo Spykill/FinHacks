@@ -50,11 +50,11 @@
     		{
 				if(user_data == undefined)
 				{
-					$http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ user_data = data.data; cb(user_data.transaction_list); }, function(data){ console.log(data); });
+					$http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ user_data = data.data; cb(user_data.transaction); }, function(data){ console.log(data); });
 				}
 				else
 				{
-					cb(user_data.transaction_list);
+					cb(user_data.transaction);
 				}
 			}
     	};
@@ -172,9 +172,7 @@
 
     	this.logout = function()
     	{
-        console.log(localStorage.getItem("username"));
     		localStorage.setItem("username", null);
-        console.log(localStorage.getItem("username"));
     	}
 
     	this.signup = function(username, password, name, age, email, gender,
@@ -233,7 +231,7 @@
 
     	this.get_category_average = function(cb)
     	{
-    		$http.post('/api/users/average_category', {}).then(function(data){
+    		$http.post('/api/users/averagecategory', {}).then(function(data){
     			cb(data.data);
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");
@@ -263,7 +261,7 @@
     		return (localStorage.getItem("username") != "null");
     	}
 
-    	this.get_category_data = function(cb)
+    	this.get_categories_data = function(cb)
     	{
     		var t = this;
     		t.get_transaction_list(function(list)
@@ -273,7 +271,7 @@
 					var cats = new Array(11);
 					for(var i = 0; i < cats.length; i++)
 					{
-						cats[list[i].category] = {delta:0, purchases: [], spending: 0};
+						cats[i] = {delta:0, purchases: [], spending: 0};
 					}
 
 					for(var i = 0; i < list.length; i++)
@@ -284,7 +282,7 @@
 
 					for(var i = 0; i < cats.length; i++)
 					{
-						cats[list[i].category].delta = cats[list[i].category].spending - cat_avgs[list[i].category];
+						cats[i].delta = cats[i].spending - cat_avgs[i];
 					}
 
 					cats[0].title = "Savings";
@@ -299,9 +297,26 @@
 					cats[9].title = "Utilities";
 					cats[10].title = "Miscellaneous";
 
-					cb(cats);
+					var c_re = {"Savings": cats[0],
+								"Rent": cats[1],
+								"Groceries": cats[2],
+								"Transportation": cats[3],
+								"Restaurants": cats[4],
+								"Entertainment": cats[5],
+								"Education": cats[6],
+								"Clothing": cats[7],
+								"Electronics": cats[8],
+								"Utilities": cats[9],
+								"Miscellaneous": cats[10]};
+					cb(c_re);
 				});
 			});
+    	}
+
+    	var self = this;
+    	this.get_category_data = function(d, cb)
+    	{
+    		self.get_categories_data(function(data){ cb(data[d]); });
     	}
     }
 })();
