@@ -1,1 +1,2 @@
 mongod --dbpath="./db"
+pause

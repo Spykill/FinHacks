@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default home-nav top-nav navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand name white-text">Budget Buddy</a>
+      <a class="navbar-brand name white-text">Budget Buddy!</a>
     </div>
     <div class="right-margin" ng-hide="ctrl.loggedin">
       <button type="button" ng-click="ctrl.login()" class="btn btn-primary navbar-btn navbar-right button-padding indigo-accent-color">Login</button>
@@ -12,9 +12,65 @@
     </div>
   </div>
 </nav>
-<div class="block main-color">
+<div class="block ">
+  <div  class="jumbotron home-jumbo" style="position: relative">
+      <div id="header" class="container padbot">
+          <!-- Logo -->
+          <h1 id="logo"><a ui-sref="home">{{ctrl.welcome_message}}</a></h1>
+      </div>
+      <div class="center quote-text">
+        <h2 class="white-text padtop center padbot quote-text">We help you save money by comparing you to people like you.</h2>
+      </div>
+  </div>
+</div>
+<div class="block accent-color graph-pane">
+  <img class="img-responsive" src="../../assets/img/graphs.jpg" alt="" />
+</div>
+<div class="block accent-color topmargin category-pane">
+  <h1 class="center padtop white-text page-title padbot">Sort by Categories!</h1>
+  <div class="row">
+    <ul class="list-group padbot  accent-color col-xs-3 col-xs-offset-2">
+        <li class="list-group-item"><a href="#">Savings<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-piggy-bank"></span></a></li>
+        <li class="list-group-item"><a href="#">Rent<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+        <li class="list-group-item"><a href="#">Groceries<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-apple"></span></a></li>
+        <li class="list-group-item"><a href="#">Transportation<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plane"></span></a></li>
+        <li class="list-group-item"><a href="#">Restaurants<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cutlery"></span></a></li>
+    </ul>
+    <ul class="list-group padbot  accent-color col-xs-3 col-xs-offset-2">
+        <li class="list-group-item"><a href="#">Entertainment<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-film"></span></a></li>
+        <li class="list-group-item"><a href="#">Education<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-education"></span></a></li>
+        <li class="list-group-item"><a href="#">Clothing<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tag"></span></a></li>
+        <li class="list-group-item"><a href="#">Electronics<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-phone"></span></a></li>
+        <li class="list-group-item"><a href="#">Utilities<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a></li>
+      </ul>
+  </div>
+
 
 </div>
-<div class="block accent-color">
 
+<div class="indigo-accent-color social-pane">
+  <a href="https://github.com/Spykill/FinHacks"><img style="position: absolute; top: 1817px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+  <h1 class="center padtop white-text page-title padbot">Connect with us!</h1>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-2">
+      <a href="http://www.facebook.com"><img src="../../assets/icons/facebook.png" class="center-block icon" alt="" /></a>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-1">
+      <a href="http://www.linkedin.com"><img src="../../assets/icons/linkedin.png"  class="center-block icon" alt="" /></a>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-1">
+      <a href="http://www.twitter.com"><img src="../../assets/icons/twitter.png" class="center-block icon" alt="" /></a>
+    </div>
+  </div>
+  <div class="row padbot">
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-2">
+      <a href="http://plus.google.com"><img src="../../assets/icons/google+.png" class="center-block icon" alt="" /></a>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-1">
+      <a href="http://mail.google.com"><img src="../../assets/icons/gmail.png" class="center-block icon" alt="" /></a>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-1">
+      <a href="http://www.reddit.com/r/personalfinance"><img src="../../assets/icons/reddit.png" class="center-block icon" alt="" /></a>
+    </div>
+  </div>
 </div>

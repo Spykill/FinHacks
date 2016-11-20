@@ -4,14 +4,16 @@
         .controller('OverviewCtrl', OverviewCtrl);
 
     function OverviewCtrl(apiService) {
-        
-        this.monthly_spend = apiService.get_transaction_list();
+        var t = this;
         this.monthly_avg_spend = "5";
+        apiService.get_user(function(data)
+        {
+            t.monthly_spend = data["income"];
+        });
 
         var theme = {
             color: [
-                '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
-                '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+                '#f40303', '#0ef403'
             ],
 
             title: {
@@ -23,7 +25,7 @@
             },
 
             dataRange: {
-                color: ['#1f610a', '#97b58d']
+                color: ['#f40303', '#0ef403']
             },
 
             toolbox: {
@@ -204,25 +206,25 @@
                 }
             },
             series: [{
-                name: 'Amount spent this month',
+                name: 'Breakdown',
                 type: 'pie',
                 radius: ['35%', '55%'],
                 itemStyle: {
                     normal: {
                         label: {
-                            show: false
+                            show: true
                         },
                         labelLine: {
-                            show: false
+                            show: true
                         }
                     }
                 },
                 data: [{
                     value: 490,
-                    name: 'Under'
+                    name: 'Not optimized'
                 }, {
                     value: 88,
-                    name: 'Over'
+                    name: 'Optimized'
                 }]
             }]
         });

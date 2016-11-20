@@ -5,7 +5,7 @@
 
     function HomeCtrl($scope, ngDialog, apiService, $state){
         this.loggedin = false;
-
+        this.welcome_message = "Welcome to Budget Buddy!"
         this.name = "";
         this.age = 0;
         this.username = "";
@@ -48,7 +48,6 @@
         function signup_submit() {
           apiService.signup(this.username, this.password, this.name, this.age, this.email, this.gender,
           this.income, this.location);
-          apiService.login(this.username, this.password);
           this.loggedin = true;
           this.name = "";
           this.age = 0;
@@ -69,6 +68,15 @@
             className: 'ngdialog-theme-default'
             })
           };
+        }
+
+        function login_submit() {
+          apiService.login(this.username, this.password);
+          this.loggedin = true;
+          this.username = "";
+          this.password = "";
+          ngDialog.close();
+          $state.go("dash.overview");
         }
       }
 
