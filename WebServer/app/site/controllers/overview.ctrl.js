@@ -11,11 +11,6 @@
             t.monthly_spend = data["income"];
         });
 
-        apiService.user_data_callback = function()
-        {
-            this.monthly_spend = apiService.get_user();
-        };
-
         var theme = {
             color: [
                 '#f40303', '#0ef403'
@@ -226,10 +221,10 @@
                 },
                 data: [{
                     value: 490,
-                    name: 'Optimized'
+                    name: 'Not optimized'
                 }, {
                     value: 88,
-                    name: 'Not optimized'
+                    name: 'Optimized'
                 }]
             }]
         });
