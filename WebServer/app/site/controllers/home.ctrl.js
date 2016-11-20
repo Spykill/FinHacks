@@ -48,18 +48,22 @@
 
         function signup_submit() {
           apiService.signup(this.username, this.password, this.name, this.age, this.email, this.gender,
-          this.income, this.location);
-          this.loggedin = true;
-          this.name = "";
-          this.age = 0;
-          this.username = "";
-          this.email = "";
-          this.password = "";
-          this.gender = "";
-          this.income = 0;
-          this.location = "";
-          ngDialog.close();
-          $state.go("dash.overview");
+          this.income, this.location, function(b){
+            if(b)
+            {
+              this.loggedin = true;
+              this.name = "";
+              this.age = 0;
+              this.username = "";
+              this.email = "";
+              this.password = "";
+              this.gender = "";
+              this.income = 0;
+              this.location = "";
+              ngDialog.close();
+              $state.go("dash.overview");
+            }
+          });
         }
 
         function login() {
