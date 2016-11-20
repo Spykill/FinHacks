@@ -25,7 +25,9 @@
 		this.get_user = function(cb) {
 			if(user_data == undefined)
 			{
-				$http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ user_data = data.data; cb(user_data); }, function(data){ console.log(data); });
+				$http.post('/api/users/getdata', 
+					{username: localStorage.getItem('username')}).then(function(data){ 
+					user_data = data.data; cb(user_data); }, function(data){ console.log(data); });
 			}
 			else
 			{
@@ -223,7 +225,8 @@
 
     	this.get_average = function(cb)
     	{
-    		$http.post('/api/users/average', {}).then(function(data){
+			console.log(cb);
+    		$http.post('/api/users/average').then(function(data){
     			cb(data.data);
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");

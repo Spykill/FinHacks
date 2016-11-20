@@ -32,9 +32,10 @@ def generate_name():
 
     last_name = last_name[0].upper() + last_name[1:]
     first_name = first_name[0].upper() + first_name[1:]
+    username = first_name + last_name
 
-    return (first_name, last_name)
+    return username
     
-def generate_email(name):
-	return name[0] +"."+name[1]+"@gmail.com"
+def generate_email(username):
+	return username + "@gmail.com"
 

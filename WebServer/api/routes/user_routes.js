@@ -241,29 +241,32 @@ router.post('/getdata', function(req, res, next) {
 });
 
 router.post('/average', function(req, res, next){
+	console.log("One time!");
 	var db = req.db;
 	var coll = db.get('users');
-	coll.find({}, function(err, docs)
-	{
+	coll.find(function(err, docs) {
 		if(err)
 		{
+			console.log("We broke here");
 			res.status(500).send("-1");
 		}
 		else
 		{
+			console.log("WHAT IN THE FUCK IS HAPPENING???");
 			var sum = 0;
 			for(var i = 0; i < docs.length; i++)
 			{
 				for(var j = 0; j < docs[i].transaction; j++)
 				{
 					sum += docs[i].transaction[j].amount;
+					console.log(docs[i].transaction[j].amount);
 				}
 			}
 			if(docs.length != 0)
 			{
 				sum /= docs.length;
 			}
-
+			console.log("We got here");
 			res.status(200).send(sum);
 		}
 	});

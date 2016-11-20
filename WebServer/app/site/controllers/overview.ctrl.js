@@ -4,12 +4,8 @@
         .controller('OverviewCtrl', OverviewCtrl);
 
     function OverviewCtrl(apiService) {
-        var t = this;
         this.monthly_avg_spend = "5";
-        apiService.get_user(function(data)
-        {
-            t.monthly_spend = data["income"];
-        });
+        this.monthly_spend = 0;
 
         var theme = {
             color: [
@@ -173,7 +169,8 @@
                         }
                     }
                 }
-            }};
+            }
+        };
 
         var echartDonut = echarts.init(document.getElementById('echart_donut'), theme);
 
@@ -220,12 +217,31 @@
                     }
                 },
                 data: [{
-                    value: 490,
+                    value: Math.floor(this.monthly_spend/this.monthly_avg_spend) * 100,
                     name: 'Not optimized'
                 }, {
-                    value: 88,
+                    value: 100 - (Math.floor(this.monthly_spend/this.monthly_avg_spend) * 100),
                     name: 'Optimized'
                 }]
             }]
         });
-    }})();
+        var self = this;
+        apiService.get_transaction_list(function(data){
+            var x = 0;
+            for (i = 0; i < data.length; i++) {
+                window.alert(data[i])
+                x += data[i].amount;
+            }
+            console.log(x)
+            x =  Math.floor(x / 12)
+
+            self.monthly_spend = x;
+        });
+
+        apiService.get_average(function(data){
+            self.monthly_avg_spend = data / 12;
+        });
+        // apiService.get_user(function(data) {
+
+
+}})();
