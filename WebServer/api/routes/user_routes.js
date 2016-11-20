@@ -86,7 +86,7 @@ router.get('/login',function(req,res){
 
 router.post('/login', function(req, res, next) {
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 	var password = req.body.password;
 
 	var db = req.db;
@@ -117,14 +117,14 @@ router.get('/signup',function(req,res){
 
 router.post('/signup', function(req, res, next) {
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 	var password = req.body.password;
 	var age = req.body.age;
 	var gender = req.body.gender;
 	var name = req.body.name;
 	var income = req.body.income;
 	var location = req.body.location;
-	var email = req.body.email;
+	var email = req.body.email.toLowerCase();
 
 	var db = req.db;
 
@@ -163,7 +163,7 @@ router.post('/signup', function(req, res, next) {
 
 router.post('/addtransaction', function(req, res, next) {
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 
 	var db = req.db;
 
@@ -219,7 +219,7 @@ router.post('/addtransaction', function(req, res, next) {
 
 router.post('/getdata', function(req, res, next) {
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 
 	console.log(username);
 
@@ -240,9 +240,293 @@ router.post('/getdata', function(req, res, next) {
 	});
 });
 
+router.post('/average', function(req, res, next){
+	var db = req.db;
+	var coll = db.get('users');
+	coll.find({}, function(err, docs)
+	{
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			var sum = 0;
+			for(var i = 0; i < docs.length; i++)
+			{
+				for(var j = 0; j < docs[i].transaction; j++)
+				{
+					sum += docs[i].transaction[j].amount;
+				}
+			}
+			if(docs.length != 0)
+			{
+				sum /= docs.length;
+			}
+
+			res.status(200).send(sum);
+		}
+	});
+});
+
+router.post('/average_demo', function(req, res, next){
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			// Find all the people in the user's category
+			coll.find({"category": doc.category}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					var sum = 0;
+					for(var i = 0; i < docs.length; i++)
+					{
+						for(var j = 0; j < docs[i].transaction; j++)
+						{
+							sum += docs[i].transaction[j].amount;
+						}
+					}
+					if(docs.length != 0)
+					{
+						sum /= docs.length;
+					}
+
+					res.status(200).send(sum);
+				}
+			});
+	    }
+	});
+});
+
+router.post('/average_loc', function(req, res, next){
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			var loc = doc.location;
+			if (possible_locations.indexOf(loc) == -1)
+			{
+				loc = "Toronto";
+			}
+
+			// Find all the people in the user's category
+			coll.find({"location": loc}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					var sum = 0;
+					for(var i = 0; i < docs.length; i++)
+					{
+						for(var j = 0; j < docs[i].transaction; j++)
+						{
+							sum += docs[i].transaction[j].amount;
+						}
+					}
+					if(docs.length != 0)
+					{
+						sum /= docs.length;
+					}
+
+					res.status(200).send(sum);
+				}
+			});
+	    }
+	});
+});
+
+router.post('/average_category', function(req, res, next){
+	var db = req.db;
+	var coll = db.get('users');
+	coll.find({}, function(err, docs)
+	{
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			var c_sum = new Array(11);
+
+			for(var i = 0; i < docs.length; i++)
+			{
+				for(var j = 0; j < docs[i].transaction; j++)
+				{
+					c_sum[docs[i].transaction[j].category] += docs[i].transaction[j].amount;
+				}
+			}
+			if(docs.length != 0)
+			{
+				for(var i = 0; i < c_sum.length; i++)
+				{
+					c_sum[i] /= docs.length;
+				}
+			}
+
+			res.status(200).send(c_sum);
+		}
+	});
+});
+
+router.post('/average_category_demo', function(req, res, next){
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			// Find all the people in the user's category
+			coll.find({"category": doc.category}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					var c_sum = new Array(11);
+
+					for(var i = 0; i < docs.length; i++)
+					{
+						for(var j = 0; j < docs[i].transaction; j++)
+						{
+							c_sum[docs[i].transaction[j].category] += docs[i].transaction[j].amount;
+						}
+					}
+					if(docs.length != 0)
+					{
+						for(var i = 0; i < c_sum.length; i++)
+						{
+							c_sum[i] /= docs.length;
+						}
+					}
+
+					res.status(200).send(c_sum);
+				}
+			});
+	    }
+	});
+});
+
+router.post('/average_category_loc', function(req, res, next){
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			var loc = doc.location;
+			if (possible_locations.indexOf(loc) == -1)
+			{
+				loc = "Toronto";
+			}
+
+			// Find all the people in the user's category
+			coll.find({"location": loc}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					var c_sum = new Array(11);
+
+					for(var i = 0; i < docs.length; i++)
+					{
+						for(var j = 0; j < docs[i].transaction; j++)
+						{
+							c_sum[docs[i].transaction[j].category] += docs[i].transaction[j].amount;
+						}
+					}
+					if(docs.length != 0)
+					{
+						for(var i = 0; i < c_sum.length; i++)
+						{
+							c_sum[i] /= docs.length;
+						}
+					}
+
+					res.status(200).send(c_sum);
+				}
+			});
+	    }
+	});
+});
+
 router.post('/compare', function(req, res, next){
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+
+	var coll = db.get('users');
+	// Find the user
+	coll.findOne({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		else
+		{
+			// Find all the people in the user's category
+			coll.find({}, function(err, docs)
+			{
+				if(err)
+				{
+					res.status(500).send("-1");
+				}
+				else
+				{
+					// Get the deltas (the difference between the selected user and the average)
+					var deltas = get_deltas(doc, calculate_average(docs));
+					// Send back the deltas
+					res.status(200).send(deltas);
+				}
+			});
+	    }
+	});
+});
+
+router.post('/compare_demo', function(req, res, next){
+	// Get vars
+	var username = req.body.username.toLowerCase();
 
 	var db = req.db;
 
@@ -278,7 +562,7 @@ var possible_locations = ["Toronto", "Montreal", "Vancouver", "Edmenton", "Calga
 
 router.post('/compare_loc', function(req, res, next){
 	// Get vars
-	var username = req.body.username;
+	var username = req.body.username.toLowerCase();
 
 	var db = req.db;
 

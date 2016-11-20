@@ -7,7 +7,6 @@
     function apiService($http)
     {
     	var user_data = undefined;
-    	var comparison_out = undefined;
 
 		function toParam(obj)
 		{
@@ -60,13 +59,13 @@
 			}
     	};
 
-    	this.get_comparison = function()
+    	this.get_comparison = function(cb)
     	{
     		if(localStorage.getItem('username'))
     		{
 	    		$http.post('/api/users/compare', {username: localStorage.getItem('username')}).then(function(data){
 		    		var comparison = data.data;
-		    		comparison_out = [{title: "Education", val: comparison[0]},
+		    		var comparison_out = [{title: "Education", val: comparison[0]},
 		    						{title: "Entertainment", val: comparison[1]},
 		    						{title: "Clothing", val: comparison[2]},
 		    						{title: "Electronics", val: comparison[3]},
@@ -85,8 +84,68 @@
 		                {title: "All", val: comparison[15]},
 		                {title: "Savings", val: comparison[16]},
 		                {title: "Miscellaneous", val: comparison[17]}];
+		            cb(comparison_out);
 		    	}, function(data){ console.log(data); });
-	    		return comparison_out;
+	    	}
+    	};
+
+    	this.get_comparison_demo = function(cb)
+    	{
+    		if(localStorage.getItem('username'))
+    		{
+	    		$http.post('/api/users/compare_demo', {username: localStorage.getItem('username')}).then(function(data){
+		    		var comparison = data.data;
+		    		var comparison_out = [{title: "Education", val: comparison[0]},
+		    						{title: "Entertainment", val: comparison[1]},
+		    						{title: "Clothing", val: comparison[2]},
+		    						{title: "Electronics", val: comparison[3]},
+		    						{title: "Restaurants", val: comparison[4]},
+		    						{title: "Groceries", val: comparison[5]},
+		    						{title: "Hardware", val: comparison[6]},
+		    						{title: "Art", val: comparison[7]},
+		    						{title: "Sports", val: comparison[8]},
+		    						{title: "Alchohol", val: comparison[9]},
+		    						{title: "Household", val: comparison[10]},
+		    						{title: "Grooming", val: comparison[11]},
+		                // Hisham adding these.
+		                {title: "Rent", val: comparison[12]},
+		                {title: "Transportation", val: comparison[13]},
+		                {title: "Utilities", val: comparison[14]},
+		                {title: "All", val: comparison[15]},
+		                {title: "Savings", val: comparison[16]},
+		                {title: "Miscellaneous", val: comparison[17]}];
+		            cb(comparison_out);
+		    	}, function(data){ console.log(data); });
+	    	}
+    	};
+
+    	this.get_comparison_loc = function(cb)
+    	{
+    		if(localStorage.getItem('username'))
+    		{
+	    		$http.post('/api/users/compare_loc', {username: localStorage.getItem('username')}).then(function(data){
+		    		var comparison = data.data;
+		    		var comparison_out = [{title: "Education", val: comparison[0]},
+		    						{title: "Entertainment", val: comparison[1]},
+		    						{title: "Clothing", val: comparison[2]},
+		    						{title: "Electronics", val: comparison[3]},
+		    						{title: "Restaurants", val: comparison[4]},
+		    						{title: "Groceries", val: comparison[5]},
+		    						{title: "Hardware", val: comparison[6]},
+		    						{title: "Art", val: comparison[7]},
+		    						{title: "Sports", val: comparison[8]},
+		    						{title: "Alchohol", val: comparison[9]},
+		    						{title: "Household", val: comparison[10]},
+		    						{title: "Grooming", val: comparison[11]},
+		                // Hisham adding these.
+		                {title: "Rent", val: comparison[12]},
+		                {title: "Transportation", val: comparison[13]},
+		                {title: "Utilities", val: comparison[14]},
+		                {title: "All", val: comparison[15]},
+		                {title: "Savings", val: comparison[16]},
+		                {title: "Miscellaneous", val: comparison[17]}];
+		            cb(comparison_out);
+		    	}, function(data){ console.log(data); });
 	    	}
     	};
 
@@ -109,6 +168,11 @@
     			console.log("OH NO EVERYONE PANIC");
           console.log(err);
     		});
+    	}
+
+    	this.logout = function()
+    	{
+    		localStorage.setItem("username", null);
     	}
 
     	this.signup = function(username, password, name, age, email, gender,
@@ -136,6 +200,106 @@
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");
     		});
+    	}
+
+    	this.get_average = function(cb)
+    	{
+    		$http.post('/api/users/average', {}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.get_average_demo = function(cb)
+    	{
+    		$http.post('/api/users/average_demo', {username: localStorage.getItem('username')}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.get_average_loc = function(cb)
+    	{
+    		$http.post('/api/users/average_loc', {username: localStorage.getItem('username')}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.get_category_average = function(cb)
+    	{
+    		$http.post('/api/users/average_category', {}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.get_category_average_demo = function(cb)
+    	{
+    		$http.post('/api/users/average_category_demo', {username: localStorage.getItem('username')}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.get_category_average_loc = function(cb)
+    	{
+    		$http.post('/api/users/average_category_loc', {username: localStorage.getItem('username')}).then(function(data){
+    			cb(data.data);
+    		}, function(err){
+    			console.log("OH NO EVERYONE PANIC");
+    		});
+    	}
+
+    	this.is_logged_in = function()
+    	{
+    		return localStorage.getItem("username");
+    	}
+
+    	this.get_category_data = function(cb)
+    	{
+    		var t = this;
+    		t.get_transaction_list(function(list)
+			{
+				t.get_category_average(function(cat_avgs)
+				{
+					var cats = new Array(11);
+					for(var i = 0; i < cats.length; i++)
+					{
+						cats[list[i].category] = {delta:0, purchases: [], spending: 0};
+					}
+
+					for(var i = 0; i < list.length; i++)
+					{
+						cats[list[i].category].spending += list[i].amount;
+						cats[list[i].category].purchases.push(list[i]);
+					}
+
+					for(var i = 0; i < cats.length; i++)
+					{
+						cats[list[i].category].delta = cats[list[i].category].spending - cat_avgs[list[i].category];
+					}
+
+					cats[0].title = "Savings";
+					cats[1].title = "Rent";
+					cats[2].title = "Groceries";
+					cats[3].title = "Transportation";
+					cats[4].title = "Restaurants";
+					cats[5].title = "Entertainment";
+					cats[6].title = "Education";
+					cats[7].title = "Clothing";
+					cats[8].title = "Electronics";
+					cats[9].title = "Utilities";
+					cats[10].title = "Miscellaneous";
+
+					cb(cats);
+				});
+			});
     	}
     }
 })();
