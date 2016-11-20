@@ -50,11 +50,11 @@
     		{
 				if(user_data == undefined)
 				{
-					$http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ user_data = data.data; cb(user_data.transaction_list); }, function(data){ console.log(data); });
+					$http.post('/api/users/getdata', {username: localStorage.getItem('username')}).then(function(data){ user_data = data.data; cb(user_data.transaction); }, function(data){ console.log(data); });
 				}
 				else
 				{
-					cb(user_data.transaction_list);
+					cb(user_data.transaction);
 				}
 			}
     	};
@@ -172,9 +172,7 @@
 
     	this.logout = function()
     	{
-        console.log(localStorage.getItem("username"));
     		localStorage.setItem("username", null);
-        console.log(localStorage.getItem("username"));
     	}
 
     	this.signup = function(username, password, name, age, email, gender,
@@ -284,7 +282,7 @@
 
 					for(var i = 0; i < cats.length; i++)
 					{
-						cats[list[i].category].delta = cats[list[i].category].spending - cat_avgs[list[i].category];
+						cats[i].delta = cats[i].spending - cat_avgs[i];
 					}
 
 					cats[0].title = "Savings";
@@ -318,7 +316,6 @@
     	var self = this;
     	this.get_category_data = function(d, cb)
     	{
-    		console.log(d);
     		self.get_categories_data(function(data){ cb(data[d]); });
     	}
     }
