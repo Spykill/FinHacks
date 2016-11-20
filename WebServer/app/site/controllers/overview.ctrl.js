@@ -3,7 +3,7 @@
         .module('finApp')
         .controller('OverviewCtrl', OverviewCtrl);
 
-    function OverviewCtrl($q, apiService) {
+    function OverviewCtrl(apiService) {
         var t = this;
         this.monthly_avg_spend = "5";
         apiService.get_user(function(data)

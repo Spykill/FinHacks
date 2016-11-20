@@ -70,4 +70,4 @@
         $('#destroy').click(function() {
             $('#reportrange').data('daterangepicker').remove();
         });
-}});
+}})();

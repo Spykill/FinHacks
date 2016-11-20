@@ -16,6 +16,11 @@
 				templateUrl:'site/partials/home.html',
 				controller:'HomeCtrl as ctrl'
 			})
+			.state("dash.category", {
+				url: "/viewcategory/:category",
+				templateUrl: "site/partials/category.html",
+				controller: 'CategoryCtrl as ctrl'
+			})
 
 			.state('dash',{
 				url:'/dashboard',

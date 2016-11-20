@@ -4,7 +4,6 @@
         .controller('HomeCtrl', HomeCtrl)
 
     function HomeCtrl($scope, ngDialog, apiService, $state){
-        this.loggedin = false;
         this.welcome_message = "Welcome to Budget Buddy!"
         this.name = "";
         this.age = 0;
@@ -18,7 +17,9 @@
         this.login = login;
         this.signup = signup;
         this.getLocation = getLocation;
-        this.signup_submit = signup_submit
+        this.signup_submit = signup_submit;
+        this.login_submit = login_submit;
+        this.signout = signout;
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -68,7 +69,39 @@
             className: 'ngdialog-theme-default'
             })
           };
+          open_login();
         }
+
+        function login_submit() {
+            var t = this;
+            apiService.login(this.username, this.password, function(logged){if (logged) {
+            t.loggedin = true;
+            ngDialog.close();
+            $state.go("dash.overview");
+          }
+          else {
+            alert("Your username or password is incorrect. Please try again.");
+          }
+          this.username = "";
+          this.password = "";});
+        }
+
+        function signout() {
+          this.name = "";
+          this.age = 0;
+          this.username = "";
+          this.email = "";
+          this.password = "";
+          this.gender = "";
+          this.income = 0;
+          this.location = "";
+          apiService.logout();
+          this.loggedin = false;
+          $state.go("home");
+        }
+
+        this.loggedin = apiService.is_logged_in();
+
       }
 
 })();
