@@ -299,7 +299,19 @@
 					cats[9].title = "Utilities";
 					cats[10].title = "Miscellaneous";
 
-					cb(cats);
+					var c_re = {"Savings": cats[0],
+								"Rent": cats[1],
+								"Groceries": cats[2],
+								"Transportation": cats[3],
+								"Restaurants": cats[4],
+								"Entertainment": cats[5],
+								"Education": cats[6],
+								"Clothing": cats[7],
+								"Electronics": cats[8],
+								"Utilities": cats[9],
+								"Miscellaneous": cats[10]};
+
+					cb(c_re);
 				});
 			});
     	}
