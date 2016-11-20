@@ -172,7 +172,9 @@
 
     	this.logout = function()
     	{
+        console.log(localStorage.getItem("username"));
     		localStorage.setItem("username", null);
+        console.log(localStorage.getItem("username"));
     	}
 
     	this.signup = function(username, password, name, age, email, gender,
@@ -258,7 +260,7 @@
 
     	this.is_logged_in = function()
     	{
-    		return localStorage.getItem("username");
+    		return (localStorage.getItem("username") != "null");
     	}
 
     	this.get_category_data = function(cb)

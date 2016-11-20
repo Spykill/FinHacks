@@ -3,12 +3,13 @@
         .module('finApp')
         .controller('DashCtrl', DashCtrl)
 
-    function DashCtrl($state){
-        
+    function DashCtrl($state, apiService){
+
         this.welcome_message = "Budget Buddy";
 
         // Function Bindings
         this.change_tab = change_tab;
+        this.signout = signout;
 
         if($state.current.url == "/overview")
         {
@@ -52,6 +53,11 @@
               $("#tab2").removeClass("active")
               $("#tab3").removeClass("active")
           }
+        }
+
+        function signout() {
+          apiService.logout();
+          $state.go("home");
         }
     }
 })();

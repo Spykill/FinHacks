@@ -73,9 +73,9 @@
         }
 
         function login_submit() {
-          logged = apiService.login(this.username, this.password);
-          if (logged) {
-            this.loggedin = true;
+            var t = this;
+            apiService.login(this.username, this.password, function(logged){if (logged) {
+            t.loggedin = true;
             ngDialog.close();
             $state.go("dash.overview");
           }
@@ -83,11 +83,10 @@
             alert("Your username or password is incorrect. Please try again.");
           }
           this.username = "";
-          this.password = "";
+          this.password = "";});
         }
 
         function signout() {
-          this.loggedin = false;
           this.name = "";
           this.age = 0;
           this.username = "";
@@ -96,13 +95,13 @@
           this.gender = "";
           this.income = 0;
           this.location = "";
-          ngDialog.close();
+          apiService.logout();
+          this.loggedin = false;
           $state.go("home");
         }
-        angular.element(document).ready(function () {
-          this.loggedin = false;
-          console.log("READY!")
-        });
+
+        this.loggedin = apiService.is_logged_in();
+
       }
 
 })();
