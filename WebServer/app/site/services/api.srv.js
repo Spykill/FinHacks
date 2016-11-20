@@ -256,7 +256,8 @@
 
     	this.get_category_average = function(cb)
     	{
-    		$http.post('/api/users/averagecategory', {}).then(function(data){
+    		$http.post('/api/users/average_category', {}).then(function(data){
+                console.log(data.data);
     			cb(data.data);
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");

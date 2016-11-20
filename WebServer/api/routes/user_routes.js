@@ -267,8 +267,47 @@ router.post('/average', function(req, res, next) {
 			{
 				sum /= doc.length;
 			}
-			console.log("We got here " + sum);
+			//console.log("We got here " + sum);
 			res.status(200).json(sum).end();
+	    }
+	});
+});
+
+router.post('/average_category', function(req, res, next) {
+	var db = req.db;
+
+	var coll = db.get('users');
+	// Find the user
+	coll.find({}, function(err, docs){
+		if(err)
+		{
+			res.status(500).send("-1 " + err.toString());
+		}
+		// Respond with all the user's data
+		else
+		{
+			var c_sum = new Array(11);
+			for(var i = 0; i < 11; i++)
+			{
+				c_sum[i] = 0;
+			}
+
+			for(var i = 0; i < docs.length; i++)
+			{
+				for(var j = 0; j < docs[i].transaction.length; j++)
+				{
+					c_sum[docs[i].transaction[j].category] += docs[i].transaction[j].amount;
+				}
+			}
+			if(docs.length != 0)
+			{
+				for(var i = 0; i < c_sum.length; i++)
+				{
+					c_sum[i] /= docs.length;
+				}
+			}
+
+			res.status(200).json(c_sum).end();
 	    }
 	});
 });
