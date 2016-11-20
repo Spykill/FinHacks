@@ -4,6 +4,9 @@ import math
 import generators as gen
 import random
 from people import Person
+import pymongo
+import generate_test_case as gc
+
 '''
 Order is Ed - Ent - Clth - Ele- Rest. - groc- B.eq- A.eq- S.eq- Alch- HH- Groom
 '''
@@ -70,19 +73,38 @@ def proportional_expenditure(trans_history):
 	return final
 	
 
-def gen_profile(vect):
+def gen_profile(vect=None):
 	'''
 	Input lifestyle vector return person obj with income, expenditure,
 	purchase amount by category.
 	'''
 	sav_rating=determine_saving_rating()
+	gender=random.choice(['male','female'])
+	if not vect:
+		if gender == 'male':
+			vect = gc.generate_test_cases(1)[0]
+		else:
+			vect = gc.generate_test_cases(1)[1]
 	trans_hist=create_transaction_history(vect)
 	income, saving=determine_inv_sav(trans_hist, sav_rating)
+	email = gen.generate_email(name)
+	age = random.choice(list(range(16,81)))
 	rent= determine_rent()
 	category = classifier.predict(vect)
 	utilities = determine_utility(rent)
 	name = gen.generate_name()
-	email = gen.generate_email(name)
-	age = random.choice(list(range(16,81)))
 	Location = random.choice(['Toronto', 'Calgary', 'Vancover', 'Montreal', 'Edmonton'])
-	return Person(category,name,email,age,income,saving,rent,utilities,trans_hist)
+	return Person(category,name,gender,email,age,income,saving,rent,utilities,trans_hist)
+
+
+def generate_people(num_people):
+	'''
+	Generates a number of people equivelant to num_people.
+	'''
+	db = pymongo.collection.Collection(finhacks, people)
+	y = [gen_profile() for i in range(0, num_people)]
+	result = db.test.insert_many(y)
+	result.insert_ids
+	
+generate_people(100)
+	
