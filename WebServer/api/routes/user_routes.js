@@ -267,8 +267,27 @@ router.post('/average', function(req, res, next) {
 			{
 				sum /= doc.length;
 			}
-			console.log("We got here " + sum);
+			//console.log("We got here " + sum);
 			res.status(200).json(sum).end();
+	    }
+	});
+});
+
+router.post('/averagecategory', function(req, res, next) {
+
+	var db = req.db;
+
+	var coll = db.get('users');
+	// Find the user
+	coll.find({}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		// Respond with all the user's data
+		else
+		{
+	    	res.json(doc);
 	    }
 	});
 });
