@@ -11,7 +11,8 @@ try:
     lst = [parsed_json[0]["v"], parsed_json[1]["v"], parsed_json[2]["v"], parsed_json[3]["v"],
        parsed_json[4]["v"], parsed_json[5]["v"], parsed_json[6]["v"], parsed_json[7]["v"],
        parsed_json[8]["v"], parsed_json[9]["v"], parsed_json[10]["v"], parsed_json[11]["v"]]
-    classifier.predict(toPredict=lst)
+    print(classifier.predict(toPredict=lst))
+    
 except Exception as err:
     print("ERROR!")
 

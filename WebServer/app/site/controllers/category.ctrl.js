@@ -36,9 +36,7 @@
         apiService.addtransaction(this.name, this.amount, this.category, function(data){
           apiService.get_category_data(this.category, function(data2){
             self.data2 = data2;
-            console.log(self.data2);
-            console.log(self.data2.purchases);
-            self.purchases = data2.purchases;
+            self.purchases = data2[self.category].purchases;
             $state.reload();
           });
         });

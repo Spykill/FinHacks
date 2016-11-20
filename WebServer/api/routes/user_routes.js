@@ -21,7 +21,6 @@ function compute_category(transaction_list, callback)
 	}
 
 	// console.log(trans_cats);
-
 	// Call python code and return the category to the callback
 	var spawn = child_process.spawn;
 	var proc = spawn('python', ['Classification/main.py', "\"" + JSON.stringify(trans_cats).split("\"").join("\\\"") + "\""]);
@@ -117,6 +116,7 @@ router.get('/signup',function(req,res){
 
 router.post('/signup', function(req, res, next) {
 	// Get vars
+	console.log(req.body.email);
 	var username = req.body.username.toLowerCase();
 	var password = req.body.password;
 	var age = req.body.age;
@@ -138,7 +138,7 @@ router.post('/signup', function(req, res, next) {
 		}
 		else
 		{
-			if(!doc || doc.length == 0)
+			if(!doc)
 			{
 				// Add a new empty user with only the username and password filled in.
 				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email, savings: 0, rent: 0, utilities: 0 }, function(err, doc){
@@ -174,14 +174,29 @@ router.post('/addtransaction', function(req, res, next) {
 
 	// Find the desired user to update.
 	var coll = db.get('users');
-	coll.find({"username": username}, function(err, doc){
+	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
 			res.status(500).send("-1").end();
 		}
 		else
 		{
+			doc.transaction.push(transaction);
 			console.log(doc);
+			compute_category(doc.transaction, function(category){
+				coll.update({"username": username}, {$push: {"transaction": transaction}, $set: {"category": category, "averages": doc.averages}}, function(err, doc){
+					if(err)
+					{
+						console.log("error 2")
+						res.status(500).send("-1").end();
+					}
+					// This succeeded
+					else
+					{
+				    	res.status(200).send("1").end();
+				    }
+				});
+			});
 		}
 	});
 	/*// Get vars

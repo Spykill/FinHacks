@@ -202,6 +202,7 @@
       income, location, cb)
     	{
             console.log(username);
+            console.log(email);
     		$http.post('/api/users/signup', {
     			username: username,
     			password: password,
