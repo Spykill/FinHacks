@@ -25,8 +25,8 @@
 		this.get_user = function(cb) {
 			if(user_data == undefined)
 			{
-				$http.post('/api/users/getdata', 
-					{username: localStorage.getItem('username')}).then(function(data){ 
+				$http.post('/api/users/getdata',
+					{username: localStorage.getItem('username')}).then(function(data){
 					user_data = data.data; cb(user_data); }, function(data){ console.log(data); });
 			}
 			else
@@ -36,6 +36,7 @@
 		}
     this.addtransaction = function(name, amount, category, cb) {
       $http.post('/api/users/addtransaction', {
+        username: localStorage.getItem("username"),
         name: name,
         amount: amount,
         category: category

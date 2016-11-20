@@ -33,9 +33,16 @@
       }
 
       function purchase_submit() {
-        apiService.addtransaction(this.name, this.amount, this.category);
+        apiService.addtransaction(this.name, this.amount, this.category, function(data){
+          apiService.get_category_data(this.category, function(data){
+            console.log(self.data);
+            console.log(self.data.purchases);
+            self.data = data;
+            self.purchases = data.purchases;
+            $state.reload();
+          });
+        });
         ngDialog.close();
-        $state.reload();
       }
     }
 

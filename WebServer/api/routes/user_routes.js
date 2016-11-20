@@ -172,7 +172,6 @@ router.post('/addtransaction', function(req, res, next) {
 	transaction.name = req.body.name;
 	transaction.amount = parseFloat(req.body.amount);
 	transaction.category = parseInt(req.body.category);
-	transaction.date = parse
 
 	// Find the desired user to update.
 	var coll = db.get('users');
@@ -180,6 +179,7 @@ router.post('/addtransaction', function(req, res, next) {
 
 		if(err)
 		{
+			console.log("Error 1")
 			res.status(500).send("-1");
 		}
 		// Found the user
@@ -204,6 +204,7 @@ router.post('/addtransaction', function(req, res, next) {
 				coll.update({"username": username}, {$push: {"transaction": transaction}, $set: {"category": category, "averages": doc.averages}}, function(err, doc){
 					if(err)
 					{
+						console.log("error 2")
 						res.status(500).send("-1");
 					}
 					// This succeeded
