@@ -1,5 +1,4 @@
 <h2>{{ctrl.data.title}}</h2>
-<h1>Insert the overview graphs, etc. here.</h1>
 <h1><strong>Purchase list</strong></h1>
 <button type="button" class="btn btn-primary" ng-click="ctrl.addPurchase()">Add Purchase</button>
 <div class="" ng-show="ctrl.data.purchases.length == 0">
@@ -13,14 +12,12 @@
       <tr>
         <th>Name</th>
         <th>Amount</th>
-        <th>Category</th>
       </tr>
     </thead>
     <tbody>
       <tr dir-paginate="purchase in ctrl.purchases | itemsPerPage: ctrl.pageSize" current-page="ctrl.currentPage">
         <td>{{purchase.name}}</td>
         <td>{{purchase.amount | currency}}</td>
-        <td>{{purchase.category}}</td>
       </tr>
     </tbody>
   </table>
