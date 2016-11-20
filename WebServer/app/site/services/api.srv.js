@@ -263,7 +263,7 @@
     		return (localStorage.getItem("username") != "null");
     	}
 
-    	this.get_category_data = function(cb)
+    	this.get_categories_data = function(cb)
     	{
     		var t = this;
     		t.get_transaction_list(function(list)
@@ -314,6 +314,11 @@
 					cb(c_re);
 				});
 			});
+    	}
+
+    	this.get_category_data = function(d, cb)
+    	{
+    		t.get_categories_data(function(data){ cb(data[d]); });
     	}
     }
 })();
