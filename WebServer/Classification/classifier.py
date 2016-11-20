@@ -26,8 +26,7 @@ def predict(toPredict=None):
 	if not toPredict:
 		toPredict = gc.generate_test_cases(1)[0]
 	toPredict = np.asarray(toPredict)
-	toPredict = toPredict.reshape(1, -1)	
+	toPredict = toPredict.reshape(1, -1)
 	clusterer = joblib.load("Classification/training_data.pkl")
 	class_ = clusterer.predict(toPredict)
-	print(class_[0])
-
+	return class_[0]
