@@ -34,11 +34,11 @@
 
       function purchase_submit() {
         apiService.addtransaction(this.name, this.amount, this.category, function(data){
-          apiService.get_category_data(this.category, function(data){
-            console.log(self.data);
-            console.log(self.data.purchases);
-            self.data = data;
-            self.purchases = data.purchases;
+          apiService.get_category_data(this.category, function(data2){
+            self.data2 = data2;
+            console.log(self.data2);
+            console.log(self.data2.purchases);
+            self.purchases = data2.purchases;
             $state.reload();
           });
         });
