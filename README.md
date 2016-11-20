@@ -3,7 +3,7 @@
 ## Description
 Budget Buddy is a web application that integrates with a customer's bank account in order to examine past and present spending habits. By comparing these spending habits to other people in the consumer's demographic and location, they are able to obtain advice about how to save money in the future.
 
-More specifically, the website analyzes the amount and frequency of purchases in different categories, and compares them to other's in order to encourage user's to "optimize" their spending habits. 
+More specifically, the website analyzes the amount and frequency of purchases in different categories, and compares them to other's in order to encourage users to "optimize" their spending habits. 
 
 ##Program Requirements
 In order to run the program, please download MongoDB from `https://www.mongodb.com/`. The program requires this in order to run.
