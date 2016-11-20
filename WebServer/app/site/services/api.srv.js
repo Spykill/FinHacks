@@ -233,7 +233,7 @@
 
     	this.get_category_average = function(cb)
     	{
-    		$http.post('/api/users/average_category', {}).then(function(data){
+    		$http.post('/api/users/averagecategory', {}).then(function(data){
     			cb(data.data);
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");
@@ -273,7 +273,7 @@
 					var cats = new Array(11);
 					for(var i = 0; i < cats.length; i++)
 					{
-						cats[list[i].category] = {delta:0, purchases: [], spending: 0};
+						cats[i] = {delta:0, purchases: [], spending: 0};
 					}
 
 					for(var i = 0; i < list.length; i++)
@@ -310,15 +310,16 @@
 								"Electronics": cats[8],
 								"Utilities": cats[9],
 								"Miscellaneous": cats[10]};
-
 					cb(c_re);
 				});
 			});
     	}
 
+    	var self = this;
     	this.get_category_data = function(d, cb)
     	{
-    		t.get_categories_data(function(data){ cb(data[d]); });
+    		console.log(d);
+    		self.get_categories_data(function(data){ cb(data[d]); });
     	}
     }
 })();

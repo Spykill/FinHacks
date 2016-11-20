@@ -359,7 +359,7 @@ router.post('/average_loc', function(req, res, next){
 	});
 });
 
-router.post('/average_category', function(req, res, next){
+router.post('/averagecategory', function(req, res, next){
 	var db = req.db;
 	var coll = db.get('users');
 	coll.find({}, function(err, docs)
