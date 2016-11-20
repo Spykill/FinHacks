@@ -69,6 +69,15 @@
             })
           };
         }
+
+        function login_submit() {
+          apiService.login(this.username, this.password);
+          this.loggedin = true;
+          this.username = "";
+          this.password = "";
+          ngDialog.close();
+          $state.go("dash.overview");
+        }
       }
 
 })();
