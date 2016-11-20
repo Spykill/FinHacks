@@ -41,6 +41,7 @@
         amount: amount,
         category: category
       }).then(function(data){
+        console.log(data.data);
         if (data.data == "1")
         {
           cb(true);
@@ -200,6 +201,7 @@
     	this.signup = function(username, password, name, age, email, gender,
       income, location, cb)
     	{
+            console.log(username);
     		$http.post('/api/users/signup', {
     			username: username,
     			password: password,
@@ -213,6 +215,7 @@
     			if (data.data == "1")
     			{
     				localStorage.setItem("username", username);
+            console.log(cb);
     				cb(true);
     			}
     			else
@@ -223,6 +226,7 @@
     			console.log("OH NO EVERYONE PANIC");
     		});
     	}
+        
 
     	this.get_average = function(cb)
     	{

@@ -138,7 +138,7 @@ router.post('/signup', function(req, res, next) {
 		}
 		else
 		{
-			if(!doc)
+			if(!doc || doc.length == 0)
 			{
 				// Add a new empty user with only the username and password filled in.
 				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email, savings: 0, rent: 0, utilities: 0 }, function(err, doc){
@@ -162,7 +162,29 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/addtransaction', function(req, res, next) {
-	// Get vars
+	var username = req.body.username.toLowerCase();
+
+	var db = req.db;
+
+	// Get more vars
+	var transaction = {};
+	transaction.name = req.body.name;
+	transaction.amount = parseFloat(req.body.amount);
+	transaction.category = parseInt(req.body.category);
+
+	// Find the desired user to update.
+	var coll = db.get('users');
+	coll.find({"username": username}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1").end();
+		}
+		else
+		{
+			console.log(doc);
+		}
+	});
+	/*// Get vars
 	var username = req.body.username.toLowerCase();
 
 	var db = req.db;
@@ -216,6 +238,7 @@ router.post('/addtransaction', function(req, res, next) {
 			});
 		}
 	});
+	*/
 });
 
 router.post('/getdata', function(req, res, next) {
@@ -260,7 +283,6 @@ router.post('/average', function(req, res, next) {
 				for(var j = 0; j < doc[i].transaction.length; j++)
 				{
 					sum += doc[i].transaction[j].amount;
-					console.log(doc[i].transaction[j].amount);
 				}
 			}
 			if(doc.length != 0)
