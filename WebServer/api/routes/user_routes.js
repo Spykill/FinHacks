@@ -180,7 +180,7 @@ router.post('/addtransaction', function(req, res, next) {
 
 		if(err)
 		{
-			res.status(500).send("Oh no! Something went wrong!");
+			res.status(500).send("-1");
 		}
 		// Found the user
 		else

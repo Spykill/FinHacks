@@ -32,6 +32,25 @@
 				cb(user_data);
 			}
 		}
+    this.addtransaction = function(name, amount, category, cb) {
+      $http.post('/api/users/addtransaction', {
+        name: name,
+        amount: amount,
+        category: category
+      }).then(function(data){
+        if (data.data == "1")
+        {
+          cb(true);
+        }
+        else
+        {
+          cb(false);
+        }
+      }, function(err){
+        console.log("OH NO EVERYONE PANIC");
+        console.log(err);
+      });
+    }
     	this.is_empty = function (cb)
     	{
 			if(user_data == undefined)
@@ -274,7 +293,7 @@
 						cats[i] = {delta:0, purchases: [], spending: 0};
 					}
 
-					for(var i = 0; i < list.length; i++)
+					for(var i = 0; i < (list.length-1); i++)
 					{
 						cats[list[i].category].spending += list[i].amount;
 						cats[list[i].category].purchases.push(list[i]);

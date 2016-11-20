@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('finApp',['ui.router', 'ngDialog']);
+		.module('finApp',['ui.router', 'ngDialog', 'angularUtils.directives.dirPagination']);
 
 	angular
 		.module('finApp')

@@ -1,0 +1,22 @@
+<form>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Account Information:</label>
+    <input type="text" class="form-control" placeholder="Name" ng-model="ctrl.name" ng-required="true">
+    <input type="number" class="form-control" placeholder="Amount" ng-model="ctrl.amount" ng-required="true">
+    <label for="category">Category:</label>
+    <select class="form-control" id="category">
+      <option value=0>Savings</option>
+      <option value=1>Rent</option>
+      <option value=2>Groceries</option>
+      <option value=3>Transportation</option>
+      <option value=4>Restaurants</option>
+      <option value=5>Entertainment</option>
+      <option value=6>Education</option>
+      <option value=7>Clothing</option>
+      <option value=8>Electronics</option>
+      <option value=9>Utilities</option>
+      <option value=10>Miscellaneous</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-model="ctrl.category" ng-click="ctrl.purchase_submit()">Submit</button>
+</form>
