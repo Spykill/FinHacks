@@ -267,7 +267,7 @@ router.post('/average', function(req, res, next){
 				sum /= docs.length;
 			}
 			console.log("We got here");
-			res.status(200).send(sum);
+			// res.status(200).send(sum);
 		}
 	});
 });
