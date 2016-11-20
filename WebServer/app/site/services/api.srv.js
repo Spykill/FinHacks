@@ -65,7 +65,6 @@
     		if(localStorage.getItem('username'))
     		{
 	    		$http.post('/api/users/compare', {username: localStorage.getItem('username')}).then(function(data){
-		    		console.log(data);
 		    		var comparison = data.data;
 		    		comparison_out = [{title: "Education", val: comparison[0]},
 		    						{title: "Entertainment", val: comparison[1]},
@@ -125,7 +124,7 @@
     			income: income,
     			location: location
     		}).then(function(data){
-    			if (data == "1")
+    			if (data.data == "1")
     			{
     				localStorage.setItem("username", username);
     				return true;

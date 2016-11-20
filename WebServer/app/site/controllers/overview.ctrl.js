@@ -11,15 +11,9 @@
             t.monthly_spend = data["income"];
         });
 
-        apiService.user_data_callback = function()
-        {
-            this.monthly_spend = apiService.get_user();
-        };
-
         var theme = {
             color: [
-                '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
-                '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+                '#f40303', '#0ef403'
             ],
 
             title: {
@@ -31,7 +25,7 @@
             },
 
             dataRange: {
-                color: ['#1f610a', '#97b58d']
+                color: ['#f40303', '#0ef403']
             },
 
             toolbox: {
@@ -218,19 +212,19 @@
                 itemStyle: {
                     normal: {
                         label: {
-                            show: false
+                            show: true
                         },
                         labelLine: {
-                            show: false
+                            show: true
                         }
                     }
                 },
                 data: [{
                     value: 490,
-                    name: 'Optimized'
+                    name: 'Not optimized'
                 }, {
                     value: 88,
-                    name: 'Not optimized'
+                    name: 'Optimized'
                 }]
             }]
         });
