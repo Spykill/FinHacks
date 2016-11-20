@@ -2,7 +2,7 @@ import generate_test_case as gc
 import numpy as np
 from sklearn import mixture
 from sklearn.externals import joblib
-import pickle
+
 '''
 a=gc.generate_test_cases(20)
 a=np.asarray(a)
