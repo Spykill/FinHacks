@@ -213,6 +213,7 @@
     			if (data.data == "1")
     			{
     				localStorage.setItem("username", username);
+            console.log(cb);
     				cb(true);
     			}
     			else
