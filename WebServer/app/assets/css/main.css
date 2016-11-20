@@ -79,10 +79,17 @@
   margin-right: 20px;
 }
 .indigo-accent-color {
-  background-color: #5C6BC0
+  background-color: #5C6BC0;
 }
 .accent-color, .accent-color ul {
-  background-color: #0288D1
+  background-color: #0288D1;
+}
+.category-pane {
+  height: 500px;
+  margin: 0;
+}
+.graph-pane {
+
 }
 .quote-text {
   font-style: italic;
@@ -99,4 +106,12 @@
 }
 .page-title {
   font-size: 3em;
+}
+img .icon {
+  display: block !important;
+  width: 50px !important;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 auto;
 }
