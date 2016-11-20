@@ -18,7 +18,8 @@
         this.login = login;
         this.signup = signup;
         this.getLocation = getLocation;
-        this.signup_submit = signup_submit
+        this.signup_submit = signup_submit;
+        this.login_submit = login_submit;
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -72,12 +73,17 @@
         }
 
         function login_submit() {
-          apiService.login(this.username, this.password);
+          logged = apiService.login(this.username, this.password);
+          if (logged) {
           this.loggedin = true;
-          this.username = "";
-          this.password = "";
           ngDialog.close();
           $state.go("dash.overview");
+          }
+          else {
+            alert("Your username or password is incorrect. Please try again.");
+          }
+          this.username = "";
+          this.password = "";
         }
       }
 
