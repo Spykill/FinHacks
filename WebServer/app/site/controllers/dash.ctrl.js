@@ -5,7 +5,7 @@
 
     function DashCtrl($state){
         
-        this.welcome_message = "Budget Buddy!";
+        this.welcome_message = "Budget Buddy";
 
         // Function Bindings
         this.change_tab = change_tab;
