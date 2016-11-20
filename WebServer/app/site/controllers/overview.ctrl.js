@@ -6,7 +6,8 @@
     function OverviewCtrl(apiService) {
         this.monthly_avg_spend = "5";
         this.monthly_spend = 0;
-
+        this.categories = ["Savings", "Rent", "Groceries", "Transportation", "Restaurants", "Entertainment", "Education", "Clothing", "Electronics", "Utilities", "Miscellaneous"]
+        this.categories_data = {};
         var theme = {
             color: [
                 '#f40303', '#0ef403'
@@ -243,5 +244,12 @@
         });
         // apiService.get_user(function(data) {
 
-
+        this.get_category_average = function(category){
+          if(!(self.categories_data[category]))
+          {
+            apiService.get_category_average(function(data){
+              self.categories_data[""] = data[0];
+            });
+          }
+        };
 }})();

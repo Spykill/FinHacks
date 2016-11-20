@@ -379,6 +379,7 @@ router.post('/average', function(req, res, next){
 				console.log("We got here " + sum);
 				res.status(200).json(sum).end();
 			}, function(err){ console.log(err); });
+>>>>>>> b35b2bfc1629317555ed659982e82d6df3b43f90
 		}
 	});
 });
