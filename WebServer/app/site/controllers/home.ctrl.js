@@ -68,6 +68,7 @@
             className: 'ngdialog-theme-default'
             })
           };
+          open_login();
         }
 
         function login_submit() {
