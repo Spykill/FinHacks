@@ -90,7 +90,7 @@
 	    	}
     	};
 
-    	this.login = function(username, password)
+    	this.login = function(username, password, cb)
     	{
     		$http.post('/api/users/login', {
     			username: username,
@@ -99,11 +99,11 @@
     			if (data.data == "1")
     			{
     				localStorage.setItem("username", username);
-    				return true;
+    				cb(true);
     			}
     			else
     			{
-    				return false;
+            cb(false);
     			}
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");
@@ -112,7 +112,7 @@
     	}
 
     	this.signup = function(username, password, name, age, email, gender,
-      income, location)
+      income, location, cb)
     	{
     		$http.post('/api/users/signup', {
     			username: username,
@@ -127,11 +127,11 @@
     			if (data.data == "1")
     			{
     				localStorage.setItem("username", username);
-    				return true;
+    				cb(true);
     			}
     			else
     			{
-    				return false;
+    				cb(false);
     			}
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");

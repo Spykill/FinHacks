@@ -4,7 +4,6 @@
         .controller('HomeCtrl', HomeCtrl)
 
     function HomeCtrl($scope, ngDialog, apiService, $state){
-        this.loggedin = false;
         this.welcome_message = "Welcome to Budget Buddy!"
         this.name = "";
         this.age = 0;
@@ -20,6 +19,7 @@
         this.getLocation = getLocation;
         this.signup_submit = signup_submit;
         this.login_submit = login_submit;
+        this.signout = signout;
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -75,9 +75,9 @@
         function login_submit() {
           logged = apiService.login(this.username, this.password);
           if (logged) {
-          this.loggedin = true;
-          ngDialog.close();
-          $state.go("dash.overview");
+            this.loggedin = true;
+            ngDialog.close();
+            $state.go("dash.overview");
           }
           else {
             alert("Your username or password is incorrect. Please try again.");
@@ -85,6 +85,24 @@
           this.username = "";
           this.password = "";
         }
+
+        function signout() {
+          this.loggedin = false;
+          this.name = "";
+          this.age = 0;
+          this.username = "";
+          this.email = "";
+          this.password = "";
+          this.gender = "";
+          this.income = 0;
+          this.location = "";
+          ngDialog.close();
+          $state.go("home");
+        }
+        angular.element(document).ready(function () {
+          this.loggedin = false;
+          console.log("READY!")
+        });
       }
 
 })();
