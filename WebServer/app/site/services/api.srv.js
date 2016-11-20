@@ -228,6 +228,8 @@
     	{
 			console.log(cb);
     		$http.post('/api/users/average').then(function(data){
+
+                console.log(data);
     			cb(data.data);
     		}, function(err){
     			console.log("OH NO EVERYONE PANIC");

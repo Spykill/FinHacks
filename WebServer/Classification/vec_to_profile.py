@@ -120,10 +120,18 @@ def generate_people(num_people):
     client = pymongo.MongoClient('localhost', 27017)  # you can specify the db location as an argument
     db = client['finhacks']
     collection = db['users']
+    monthly_total_spend = 0
+    times_spent = 0
     for i in range(0, num_people):
         temp = gen_profile()
         temp_dict = to_dict(temp)
         collection.insert_one(temp_dict)
+        for payment in temp_dict["transaction"]:
+            monthly_total_spend += payment["amount"]
+        times_spent += 1
+    monthly_avg_spend = (monthly_total_spend / times_spent) / 12
+    print(monthly_avg_spend)
+    collection.insert_one({"monthly_avg_spend": monthly_avg_spend})
 
 
 if __name__ == "__main__":

@@ -229,10 +229,10 @@
         apiService.get_transaction_list(function(data){
             var x = 0;
             for (i = 0; i < data.length; i++) {
-                window.alert(data[i])
+                //window.alert(data[i])
                 x += data[i].amount;
             }
-            console.log(x)
+            //console.log(x)
             x =  Math.floor(x / 12)
 
             self.monthly_spend = x;

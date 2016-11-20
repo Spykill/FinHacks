@@ -96,17 +96,17 @@ router.post('/login', function(req, res, next) {
 	coll.findOne({username: username}, {}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send([err.toString(), doc]);
+			res.status(500).send([err.toString(), doc]).end();
 		}
 		// Did they use the wrong password?
 		else if (doc.password != password)
 		{
-	    	res.status(200).send("0");
+	    	res.status(200).send("0").end();
 		}
 		// They used the right password! :D
 		else
 		{
-	    	res.status(200).send("1");
+	    	res.status(200).send("1").end();
 	    }
 	});
 });
@@ -134,7 +134,7 @@ router.post('/signup', function(req, res, next) {
 	{
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -144,18 +144,18 @@ router.post('/signup', function(req, res, next) {
 				coll.insert({"username": username, "password": password, "transaction": [], "category": 0, "averages": {}, "age": age, "gender": gender, "name": name, "income": income, "location": location, "email": email, savings: 0, rent: 0, utilities: 0 }, function(err, doc){
 					if(err)
 					{
-						res.status(500).send("-1");
+						res.status(500).send("-1").end();
 					}
 					// Adding worked!
 					else
 					{
-				    	res.status(200).send("1");
+				    	res.status(200).send("1").end();
 				    }
 				});
 			}
 			else
 			{
-	    		res.status(200).send("0");
+	    		res.status(200).send("0").end();
 			}
 		}
 	});
@@ -180,7 +180,7 @@ router.post('/addtransaction', function(req, res, next) {
 		if(err)
 		{
 			console.log("Error 1")
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		// Found the user
 		else
@@ -205,12 +205,12 @@ router.post('/addtransaction', function(req, res, next) {
 					if(err)
 					{
 						console.log("error 2")
-						res.status(500).send("-1");
+						res.status(500).send("-1").end();
 					}
 					// This succeeded
 					else
 					{
-				    	res.status(200).send("1");
+				    	res.status(200).send("1").end();
 				    }
 				});
 			});
@@ -236,11 +236,44 @@ router.post('/getdata', function(req, res, next) {
 		// Respond with all the user's data
 		else
 		{
-	    	res.status(200).send(doc);
+	    	res.json(doc);
 	    }
 	});
 });
 
+router.post('/average', function(req, res, next) {
+	var db = req.db;
+
+	var coll = db.get('users');
+	// Find the user
+	coll.find({}, function(err, doc){
+		if(err)
+		{
+			res.status(500).send("-1");
+		}
+		// Respond with all the user's data
+		else
+		{
+			var sum = 0;
+			for(var i = 0; i < doc.length; i++)
+			{
+				for(var j = 0; j < doc[i].transaction.length; j++)
+				{
+					sum += doc[i].transaction[j].amount;
+					console.log(doc[i].transaction[j].amount);
+				}
+			}
+			if(doc.length != 0)
+			{
+				sum /= doc.length;
+			}
+			console.log("We got here " + sum);
+			res.status(200).json(sum).end();
+	    }
+	});
+});
+
+/*
 router.post('/average', function(req, res, next){
 	console.log("One time!");
 	var db = req.db;
@@ -249,26 +282,28 @@ router.post('/average', function(req, res, next){
 		if(err)
 		{
 			console.log("We broke here");
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
-			console.log("WHAT IN THE FUCK IS HAPPENING???");
-			var sum = 0;
-			for(var i = 0; i < docs.length; i++)
-			{
-				for(var j = 0; j < docs[i].transaction; j++)
+			docs.toArray().then(function(list){
+				var sum = 0;
+				for(var i = 0; i < list.length; i++)
 				{
-					sum += docs[i].transaction[j].amount;
-					console.log(docs[i].transaction[j].amount);
+					for(var j = 0; j < list[i].transaction; j++)
+					{
+						sum += list[i].transaction[j].amount;
+						console.log(list[i].transaction[j].amount);
+					}
 				}
-			}
-			if(docs.length != 0)
-			{
-				sum /= docs.length;
-			}
-			console.log("We got here");
-			// res.status(200).send(sum);
+				if(list.length != 0)
+				{
+					sum /= list.length;
+				}
+				console.log("We got here " + sum);
+				res.status(200).json(sum).end();
+			}, function(err){ console.log(err); });
+>>>>>>> b35b2bfc1629317555ed659982e82d6df3b43f90
 		}
 	});
 });
@@ -282,7 +317,7 @@ router.post('/average_demo', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -291,7 +326,7 @@ router.post('/average_demo', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
@@ -308,7 +343,7 @@ router.post('/average_demo', function(req, res, next){
 						sum /= docs.length;
 					}
 
-					res.status(200).send(sum);
+					res.status(200).json(sum).end();
 				}
 			});
 	    }
@@ -324,7 +359,7 @@ router.post('/average_loc', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -339,7 +374,7 @@ router.post('/average_loc', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
@@ -356,7 +391,7 @@ router.post('/average_loc', function(req, res, next){
 						sum /= docs.length;
 					}
 
-					res.status(200).send(sum);
+					res.status(200).json(sum).end();
 				}
 			});
 	    }
@@ -370,7 +405,7 @@ router.post('/averagecategory', function(req, res, next){
 	{
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -391,7 +426,7 @@ router.post('/averagecategory', function(req, res, next){
 				}
 			}
 
-			res.status(200).send(c_sum);
+			res.status(200).json(c_sum).end();
 		}
 	});
 });
@@ -405,7 +440,7 @@ router.post('/average_category_demo', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -414,7 +449,7 @@ router.post('/average_category_demo', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
@@ -435,7 +470,7 @@ router.post('/average_category_demo', function(req, res, next){
 						}
 					}
 
-					res.status(200).send(c_sum);
+					res.status(200).json(c_sum).end();
 				}
 			});
 	    }
@@ -451,7 +486,7 @@ router.post('/average_category_loc', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -466,7 +501,7 @@ router.post('/average_category_loc', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
@@ -487,7 +522,7 @@ router.post('/average_category_loc', function(req, res, next){
 						}
 					}
 
-					res.status(200).send(c_sum);
+					res.status(200).json(c_sum).end();
 				}
 			});
 	    }
@@ -505,7 +540,7 @@ router.post('/compare', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -514,14 +549,14 @@ router.post('/compare', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
 					// Get the deltas (the difference between the selected user and the average)
 					var deltas = get_deltas(doc, calculate_average(docs));
 					// Send back the deltas
-					res.status(200).send(deltas);
+					res.status(200).json(deltas).end();
 				}
 			});
 	    }
@@ -539,7 +574,7 @@ router.post('/compare_demo', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -548,22 +583,22 @@ router.post('/compare_demo', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
 					// Get the deltas (the difference between the selected user and the average)
 					var deltas = get_deltas(doc, calculate_average(docs));
 					// Send back the deltas
-					res.status(200).send(deltas);
+					res.status(200).json(deltas).end();
 				}
 			});
 	    }
 	});
 });
-
+*/
 var possible_locations = ["Toronto", "Montreal", "Vancouver", "Edmenton", "Calgary"]
-
+/*
 router.post('/compare_loc', function(req, res, next){
 	// Get vars
 	var username = req.body.username.toLowerCase();
@@ -575,7 +610,7 @@ router.post('/compare_loc', function(req, res, next){
 	coll.findOne({"username": username}, function(err, doc){
 		if(err)
 		{
-			res.status(500).send("-1");
+			res.status(500).send("-1").end();
 		}
 		else
 		{
@@ -589,19 +624,19 @@ router.post('/compare_loc', function(req, res, next){
 			{
 				if(err)
 				{
-					res.status(500).send("-1");
+					res.status(500).send("-1").end();
 				}
 				else
 				{
 					// Get the deltas (the difference between the selected user and the average)
 					var deltas = get_deltas(doc, calculate_average(docs));
 					// Send back the deltas
-					res.status(200).send(deltas);
+					res.status(200).json(deltas).end();
 				}
 			});
 	    }
 	});
 });
-
+*/
 
 module.exports = router;
