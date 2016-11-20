@@ -16,7 +16,7 @@
   padding: 0;
   width: 100%;
 }
-#logo a {
+#logo a, .page-title {
   color: #FFF;
   font-family: Lobster;
   text-shadow: 1px 1px #777;
@@ -81,7 +81,7 @@
 .indigo-accent-color {
   background-color: #5C6BC0
 }
-.accent-color {
+.accent-color, .accent-color ul {
   background-color: #0288D1
 }
 .quote-text {
@@ -96,4 +96,7 @@
     background-position: center;
     background-size: cover;
     height: 10% !important;
+}
+.page-title {
+  font-size: 3em;
 }
